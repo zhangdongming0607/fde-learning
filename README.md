@@ -20,6 +20,12 @@
 
 2026-10-24：W01 本地产出已完成并通过公开预检（`check_product --root .` 为 pass）。模型为硅基流动 `deepseek-ai/DeepSeek-V4.1-Flash`；`verify_product --live` 11 项、Promptfoo 7 项通过；完成两次沈总访谈，fit-gap 7 条（GAP-001 至 GAP-007），立项报告结论为带条件继续。尚未提交到班期入口，内容待助教判读。每周做法见 [作业流程](notes/作业流程.md)。
 
+## 每周入口
+
+每周一个索引页，列出当周的材料、笔记、证据、访谈和报告；文件仍在原位置，工程结构不变。
+
+- [W01 进场与立项判断](weeks/w01.md)
+
 第一周接手标准产品，建立自己的模型运行基线，并形成初步 fit-gap 与立项判断。后续沿用同一份工程，按各周任务增加客户能力。
 
 开始学习先读 [W01 学习起点](notes/w01/00-学习起点.md) 和 [作业任务书](materials/w01/handouts/05_作业任务书.md)。安装与运行方式见 [官方工程 README](project/README.md)。
