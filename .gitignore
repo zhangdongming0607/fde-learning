@@ -1,7 +1,6 @@
-# 本地课件与原始压缩包
-materials/w01/slides/
-materials/w01/video-transcripts/
-materials/课程表.png
+# 课程方材料与含课程内容的学习笔记：只在本地保留，不进入仓库
+materials/
+notes/w*/
 *.zip
 
 # 中间文件与运行环境
