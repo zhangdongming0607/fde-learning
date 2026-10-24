@@ -1,0 +1,238 @@
+{
+  "contract_version": "w01-0.2.1",
+  "product_version": "0.2.0-w1",
+  "capability_matrix_version": "w1-capabilities-0.2.0",
+  "items": [
+    {
+      "id": "GAP-001",
+      "request": "从 80 万活跃会员中识别需要重点经营的会员，供运营使用。",
+      "category": "待判断",
+      "capability_ids": [
+        "CAP-003",
+        "CAP-004",
+        "CAP-006"
+      ],
+      "evidence_status": "reported",
+      "evidence": [
+        {
+          "source": "01_沈总立项邮件.md（MAIL-W01-001）",
+          "locator": "第 3 段",
+          "note": "沈总提出\"80 万活跃会员，希望助手能帮运营识别哪些人需要重点经营\"。这是发起人的诉求和单方数字。"
+        },
+        {
+          "source": "W1-interview-297d91ea-0cee-51bb-b5b5-1042ea54f86f-transcript.json",
+          "locator": "MSG-01182",
+          "note": "沈总称 80 万活跃会员\"是我们目前按这个口径看的\"，具体报表和统计团队现在不能确认，需要与同事核实。"
+        },
+        {
+          "source": "artifacts/w01/runtime_evidence.json",
+          "locator": "case: analysis",
+          "note": "标准产品在松果生活样例数据上按标准语义识别出消费下降的老会员并给出依据；只证明标准机制可用，不代表青禾数据或口径已适配。"
+        },
+        {
+          "source": "product/capabilities.json",
+          "locator": "CAP-006",
+          "note": "标准语义只有净消费、老会员和下降定义；青禾语义与数据适配由后续开发，不自动支持任意指标。"
+        }
+      ],
+      "next_step": "找小林确认\"活跃会员\"\"需要重点经营\"的定义与现有报表出处；找老周确认会员与订单数据所在系统、可提供方式和覆盖范围。据此判断标准\"老会员消费下降\"语义能否覆盖，或需要配置、适配。"
+    },
+    {
+      "id": "GAP-002",
+      "request": "识别出需要重点经营的会员后，直接给会员运营经理小林提供可用的运营建议。",
+      "category": "待判断",
+      "capability_ids": [
+        "CAP-001",
+        "CAP-003"
+      ],
+      "evidence_status": "reported",
+      "evidence": [
+        {
+          "source": "01_沈总立项邮件.md（MAIL-W01-001）",
+          "locator": "第 3 段",
+          "note": "沈总提出\"识别出来之后，最好能直接给小林一些运营建议\"。这是发起人的诉求，小林本人的需要尚未了解。"
+        },
+        {
+          "source": "W1-interview-297d91ea-0cee-51bb-b5b5-1042ea54f86f-transcript.json",
+          "locator": "MSG-01188",
+          "note": "沈总指引：数据口径和会员老化找小林；小林的实际工作方式需向本人核实。"
+        },
+        {
+          "source": "artifacts/w01/runtime_evidence.json",
+          "locator": "case: analysis",
+          "note": "标准产品在松果生活样例上为下降会员生成召回建议并注明需业务人员核实；建议由模型生成、措辞每次不同，只证明有生成建议的机制，不证明对小林可用。"
+        }
+      ],
+      "next_step": "访谈小林：了解她现在怎么制定和执行会员运营动作、需要什么形式和粒度的建议、建议由谁执行（运营或门店）；可请她评价标准产品在样例上生成的建议是否可用。据此判断建议能力属于产品已有、客户配置，还是产品缺口。"
+    },
+    {
+      "id": "GAP-003",
+      "request": "助手进入后不额外增加小林的工作量（例如再多整理一套表），且要对复购目标有实际帮助。",
+      "category": "待判断",
+      "capability_ids": [],
+      "evidence_status": "reported",
+      "evidence": [
+        {
+          "source": "01_沈总立项邮件.md（MAIL-W01-001）",
+          "locator": "第 3 段",
+          "note": "沈总提出\"最好能直接给小林一些运营建议，别又让她多整理一套表\"。"
+        },
+        {
+          "source": "W1-interview-297d91ea-0cee-51bb-b5b5-1042ea54f86f-transcript.json",
+          "locator": "MSG-01184",
+          "note": "沈总称这次\"不想再让小林多背一套整理表的活\"，同时说明上个项目的具体情况\"给不了可确认的细节，别拿我的印象当事实\"。"
+        }
+      ],
+      "next_step": "访谈小林：了解她现在用哪些工具、整理哪些表、各花多少时间，助手结果需要以什么方式进入她现有的工作；向小林和老周了解上个智能营销项目实际怎样使用、哪里增加了工作量。据此与小林确定\"不增加工作量\"的可核对验收方式，并判断结果呈现与对接属于客户配置、系统适配还是产品缺口。"
+    },
+    {
+      "id": "GAP-004",
+      "request": "三个月内复购率止跌回升，向董事会交代。",
+      "category": "暂不承诺",
+      "capability_ids": [],
+      "evidence_status": "reported",
+      "evidence": [
+        {
+          "source": "01_沈总立项邮件.md（MAIL-W01-001）",
+          "locator": "第 2、3 段",
+          "note": "沈总称复购率连续四个季度下滑，希望\"三个月能看到效果，也好向董事会有个交代\"，并提出\"把复购下滑的问题解决掉\"。"
+        },
+        {
+          "source": "W1-interview-297d91ea-0cee-51bb-b5b5-1042ea54f86f-transcript.json",
+          "locator": "MSG-01180",
+          "note": "沈总称三个月后最想展示\"复购率止跌回升\"，但\"具体提升多少、按什么口径算、什么算正式验收，现在都还没确认\"。"
+        },
+        {
+          "source": "W1-interview-297d91ea-0cee-51bb-b5b5-1042ea54f86f-transcript.json",
+          "locator": "MSG-01182",
+          "note": "沈总称复购率下滑的具体报表和统计团队\"现在不能确认，得跟相关同事核实\"。"
+        },
+        {
+          "source": "W1-interview-297d91ea-0cee-51bb-b5b5-1042ea54f86f-transcript.json",
+          "locator": "MSG-01188",
+          "note": "沈总确认复述：\"目标就是复购率止跌回升，提升幅度、口径和验收标准都还没定\"。"
+        },
+        {
+          "source": "W1-interview-32ff5258-64f5-5f96-b22c-a1e2dca7d697-transcript.json",
+          "locator": "MSG-01191",
+          "note": "沈总称复购率\"是我一直盯着的核心指标\"，\"直接关系到会员这块的收入\"；提升幅度和计算口径仍未定。"
+        },
+        {
+          "source": "W1-interview-32ff5258-64f5-5f96-b22c-a1e2dca7d697-transcript.json",
+          "locator": "MSG-01199",
+          "note": "沈总称三个月\"是我希望看到效果的时间，不是从哪天起算的正式约定\"，倾向从数据和范围确认、验证跑起来之后起算；起算点和汇报节点需与小林、陈姐、王经理对齐。"
+        }
+      ],
+      "next_step": "先找小林核实复购率口径与报表出处、找老周确认数据来源，判断\"复购率连续四个季度下滑\"是否成立；再与沈总把三个月目标转为可核对的阶段进展（见 GAP-005 至 GAP-007），业务结果在取得基线数据后另行评估，不承诺提升幅度或时间。"
+    },
+    {
+      "id": "GAP-005",
+      "request": "三个月内在青禾数据上看到可核对的会员分层进展。",
+      "category": "系统适配",
+      "capability_ids": [
+        "CAP-003",
+        "CAP-004",
+        "CAP-006"
+      ],
+      "evidence_status": "reported",
+      "evidence": [
+        {
+          "source": "W1-interview-297d91ea-0cee-51bb-b5b5-1042ea54f86f-transcript.json",
+          "locator": "MSG-01180",
+          "note": "沈总称若复购率未明显回升，\"至少得让我看到会员分层、触达和复购变化有可核对的进展，而不是只讲产品功能\"。"
+        },
+        {
+          "source": "W1-interview-297d91ea-0cee-51bb-b5b5-1042ea54f86f-transcript.json",
+          "locator": "MSG-01188",
+          "note": "沈总复述确认\"三个月内我要看到会员分层、触达和复购变化上有可核对的进展\"。"
+        },
+        {
+          "source": "artifacts/w01/runtime_evidence.json",
+          "locator": "case: analysis",
+          "note": "标准产品在松果生活样例上按标准语义完成老会员消费下降分层，并对未覆盖门店返回未知；只证明标准机制，青禾数据尚未接入。"
+        },
+        {
+          "source": "product/capabilities.json",
+          "locator": "CAP-006",
+          "note": "青禾语义与数据适配由后续开发，不自动支持任意指标。"
+        },
+        {
+          "source": "W1-interview-32ff5258-64f5-5f96-b22c-a1e2dca7d697-transcript.json",
+          "locator": "MSG-01193",
+          "note": "沈总认可\"在部分门店数据上做出有依据、能逐个核对的重点会员名单\"算他要的进展，但名单背后的数据口径需核实。"
+        },
+        {
+          "source": "W1-interview-32ff5258-64f5-5f96-b22c-a1e2dca7d697-transcript.json",
+          "locator": "MSG-01195",
+          "note": "验证范围沈总\"定不了全部\"，需小林、陈姐参与；会员和订单数据提供给产品方验证由谁批准、走什么合规流程，沈总不能确认，需找老周和王经理核实。"
+        }
+      ],
+      "next_step": "找老周确认会员、订单、门店数据所在系统、提供方式、字段与覆盖范围；找老周和王经理确认数据提供给产品方验证的审批与合规流程；与沈总、小林、陈姐共同确定验证门店与时段，并由小林确认分层规则（老会员、下降阈值、时间窗等）。据此接入青禾数据，以部分门店上\"有依据、可逐条核对的重点会员名单\"作为可核对进展的最小版本（沈总在 MSG-01193 认可此方向，验收标准仍待确定）。"
+    },
+    {
+      "id": "GAP-006",
+      "request": "三个月内看到对目标会员的触达有可核对的进展（如消息、发券或标签进入青禾业务系统）。",
+      "category": "系统适配",
+      "capability_ids": [
+        "CAP-007"
+      ],
+      "evidence_status": "reported",
+      "evidence": [
+        {
+          "source": "W1-interview-297d91ea-0cee-51bb-b5b5-1042ea54f86f-transcript.json",
+          "locator": "MSG-01180",
+          "note": "沈总把\"触达\"列为三个月内需要可核对进展的内容之一。"
+        },
+        {
+          "source": "product/capabilities.json",
+          "locator": "CAP-007",
+          "note": "当前只有独立样例标签 API（草案、确认、执行、查询、幂等、撤销）；青禾发券、标签连接器 W8 再开发。"
+        },
+        {
+          "source": "artifacts/w01/runtime_evidence.json",
+          "locator": "cases: http_action, idempotency, undo",
+          "note": "标准产品在样例标签系统上验证了确认后执行、防重与撤销；不涉及青禾系统或实际触达。"
+        },
+        {
+          "source": "W1-interview-32ff5258-64f5-5f96-b22c-a1e2dca7d697-transcript.json",
+          "locator": "MSG-01193",
+          "note": "沈总称名单\"只是起点\"，\"触达和复购怎么算得先谈清楚\"。"
+        }
+      ],
+      "next_step": "访谈小林：现在用哪些渠道触达会员、由运营还是门店执行；找老周确认相关业务系统与接口条件。据此规划青禾标签或发券连接器（能力矩阵计划 W8），触达执行与权益发放仍需人工确认。"
+    },
+    {
+      "id": "GAP-007",
+      "request": "三个月内能看到会员复购的前后变化，并可核对。",
+      "category": "产品缺口",
+      "capability_ids": [
+        "CAP-003",
+        "CAP-006"
+      ],
+      "evidence_status": "reported",
+      "evidence": [
+        {
+          "source": "W1-interview-297d91ea-0cee-51bb-b5b5-1042ea54f86f-transcript.json",
+          "locator": "MSG-01180",
+          "note": "沈总把\"复购变化\"列为三个月内需要可核对进展的内容之一。"
+        },
+        {
+          "source": "W1-interview-297d91ea-0cee-51bb-b5b5-1042ea54f86f-transcript.json",
+          "locator": "MSG-01182",
+          "note": "沈总称复购率的具体报表和统计团队现在不能确认。"
+        },
+        {
+          "source": "product/capabilities.json",
+          "locator": "CAP-006",
+          "note": "标准语义只有净消费、老会员和下降定义，不自动支持任意指标；复购率不在标准语义内。"
+        },
+        {
+          "source": "W1-interview-32ff5258-64f5-5f96-b22c-a1e2dca7d697-transcript.json",
+          "locator": "MSG-01193",
+          "note": "沈总称三个月要看到复购变化，\"触达和复购怎么算得先谈清楚\"。"
+        }
+      ],
+      "next_step": "找小林确认复购率的口径与现有报表；评估标准产品是否新增复购类指标及验证方式（新增指标需真实实现计算）。在此之前不以净消费比较代替复购率，也不承诺变化幅度。"
+    }
+  ]
+}

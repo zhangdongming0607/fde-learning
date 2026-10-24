@@ -1,5 +1,6 @@
 # 本地课件与原始压缩包
 materials/w01/slides/
+materials/w01/video-transcripts/
 materials/课程表.png
 *.zip
 
@@ -18,6 +19,10 @@ node_modules/
 *.sqlite-*
 *.db
 *.db-*
+
+# 本地备份与工具日志
+backups/
+.claude/
 
 # 本地凭据
 .env

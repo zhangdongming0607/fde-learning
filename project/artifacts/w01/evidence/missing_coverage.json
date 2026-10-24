@@ -1,0 +1,131 @@
+{
+  "product_version": "0.2.0-w1",
+  "runtime_revision": "w01-runtime-20260922",
+  "session_id": "f3c54b37-4b5a-458c-af79-506b35ad4b3d",
+  "model_mode": "live",
+  "model_name": "deepseek-ai/DeepSeek-V4.1-Flash",
+  "prompt_sha256": "051286bc27083b1f3cd9201ebcd09030830ec3a06401197a0adaa0f1003fcddd",
+  "status": "incomplete",
+  "result": {
+    "status": "incomplete",
+    "summary": "已按确认时段（基线 2026-07-01 至 2026-07-31，对比 2026-08-01 至 2026-08-31，结束日不含当天）对 S03 执行老会员净消费比较，工具返回 partial：S03 的数据覆盖只到 2026-08-01，8 月没有数据覆盖。因此无法计算 S03 会员的 8 月净消费，也无法判定“下降至少 20%”的人群，本次不输出召回建议。S03 的 8 月消费属于“未知”，不能当作零，也不能据此推断会员流失。可选的后续做法：1）暂改为分析有完整覆盖的 S01 或 S02（覆盖至 2026-09-01）；2）待 S03 补齐 8 月数据后重新执行同一口径的比较。",
+    "recommendations": [],
+    "evidence_ids": [
+      "CMP-8eb496ca71fc574d"
+    ],
+    "limitations": [
+      "S03 覆盖区间为 2026-07-01 至 2026-08-01，缺少 2026-08-01 之后的对比期数据，结果标记为 partial。",
+      "未覆盖门店的消费为未知，不可计为零，因此不生成下降名单与召回建议。",
+      "结论不能推广到未覆盖门店；S03 的 8 月情况需等数据补齐后再核验。",
+      "净消费口径为已支付订单金额减退款（分），取消单不计入净消费与已支付笔数；零基期会员不计算下降比例。"
+    ]
+  },
+  "observations": [
+    {
+      "name": "describe_business",
+      "result": {
+        "status": "ok",
+        "semantics": {
+          "version": "sample-semantics-1",
+          "company": "松果生活（独立虚构样例）",
+          "objects": [
+            "Member",
+            "Order",
+            "Store",
+            "Tag"
+          ],
+          "links": [
+            "Member belongs_to Store",
+            "Order belongs_to Member"
+          ],
+          "spend": {
+            "id": "sample.net_spend.v1",
+            "aggregation": "paid_minus_refunded_cents",
+            "unit": "CNY cents",
+            "include": "status=paid",
+            "window": "start inclusive, end exclusive"
+          },
+          "old_member": {
+            "basis": "joined_before_baseline"
+          },
+          "decline": {
+            "minimum_pct": 20,
+            "formula": "(baseline-current)/baseline*100",
+            "zero_baseline": "undefined; excluded from decline cohort"
+          },
+          "recommendation_constraints": [
+            "只提出可供运营人员审核的建议，不承诺召回效果",
+            "未获得确认不执行标签动作",
+            "不声称已经发券",
+            "引用工具 evidence_id，金额只能来自工具结果"
+          ]
+        },
+        "dataset": {
+          "dataset_version": "sample-1",
+          "business_reference_date": "2026-09-01",
+          "fictional": true,
+          "company": "松果生活",
+          "description": "独立于青禾。2026 年 7 月与 8 月；S03 的 8 月没有数据覆盖，不可当作消费为零。"
+        },
+        "coverage": [
+          {
+            "store_id": "S01",
+            "start": "2026-07-01",
+            "end": "2026-09-01"
+          },
+          {
+            "store_id": "S02",
+            "start": "2026-07-01",
+            "end": "2026-09-01"
+          },
+          {
+            "store_id": "S03",
+            "start": "2026-07-01",
+            "end": "2026-08-01"
+          }
+        ],
+        "required": "必须由用户明确或确认两个时段，不能擅自用默认日期替代澄清。"
+      },
+      "call_id": "01a16e722bcd98d28ff267b35e464769"
+    },
+    {
+      "name": "compare_spending",
+      "result": {
+        "status": "partial",
+        "evidence_id": "CMP-8eb496ca71fc574d",
+        "dataset_version": "sample-1",
+        "metric_id": "sample.net_spend.v1",
+        "windows": {
+          "baseline": [
+            "2026-07-01",
+            "2026-08-01"
+          ],
+          "current": [
+            "2026-08-01",
+            "2026-09-01"
+          ],
+          "end_exclusive": true
+        },
+        "minimum_decline_pct": 20,
+        "rows": [],
+        "declining_members": [],
+        "missing_coverage_stores": [
+          "S03"
+        ],
+        "limitations": [
+          "未覆盖门店的消费未知，不能计为零。"
+        ],
+        "business_reference_date": "2026-09-01"
+      },
+      "call_id": "01a16e722bcd98d28ff267b35e46476a"
+    }
+  ],
+  "steps": 2,
+  "output_repairs": 0,
+  "usage": {
+    "prompt_tokens": 3987,
+    "completion_tokens": 1108,
+    "total_tokens": 5095
+  },
+  "trace_id": "c9af330d3b788c73e6dfc8d903fc9e9d"
+}
