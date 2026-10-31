@@ -1,0 +1,19 @@
+{
+  "version": "w02-extractor-0.1.0",
+  "scope_id": "qinghe",
+  "sources": [
+    "artifacts/w02/sources/W2-interview-40742ffc-0994-5acd-8a8c-d772d28f9ef9-transcript.json",
+    "artifacts/w02/sources/W2-interview-6c1d37b4-9a0c-5106-8e00-9852640f4ea4-transcript.json",
+    "artifacts/w02/sources/W2-interview-c4a59a18-4bff-535c-a011-dd0dd0d508fd-transcript.json",
+    "artifacts/w02/sources/W2-interview-f97c78e0-6636-5021-9f78-4daba5b3931c-transcript.json",
+    "artifacts/w02/sources/W2-interview-1360cd40-3972-5f00-8d48-e03f16ae2487-transcript.json"
+  ],
+  "prompt": "customer/w02/extraction_prompt.txt",
+  "focus_questions": [
+    "根据自己的访谈目标替换本项：哪些定义、工作约束、观点和未决问题需要保留？"
+  ],
+  "batch_chars": 16000,
+  "max_batches": 24,
+  "reconcile_chars": 96000,
+  "profile": "compatible"
+}

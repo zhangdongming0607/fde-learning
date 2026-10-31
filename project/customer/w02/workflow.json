@@ -1,0 +1,9 @@
+{
+  "version": "w02-workflow-0.1.0",
+  "goal": "按自己的调查问题填写本轮要补充或核实的业务知识。",
+  "extraction_config": "customer/w02/extraction.json",
+  "skill": "customer/w02/skills/extract-business/SKILL.md",
+  "business_model": "docs/w02/business_model.md",
+  "notes": "docs/w02/interview_notes.md",
+  "max_steps": 24
+}
