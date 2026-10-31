@@ -1,0 +1,24 @@
+[
+  {
+    "phase": "extract",
+    "request": {
+      "path": "artifacts/w02/runs/RUN-7069b61318a1473e819c35e7a69ac271/step-001.request.json",
+      "sha256": "16bf4f6e8f7a85165ff01954d6a18e2a3ad301484011d26ae2cc536b1a9eeb42"
+    },
+    "response": {
+      "path": "artifacts/w02/runs/RUN-7069b61318a1473e819c35e7a69ac271/step-001.response.json",
+      "sha256": "8fdcf707f768579a040ef7bd2b8993cf27d739e0c1ee7d8151b75c067c8a0d14"
+    }
+  },
+  {
+    "phase": "extract",
+    "request": {
+      "path": "artifacts/w02/runs/RUN-7069b61318a1473e819c35e7a69ac271/step-002.request.json",
+      "sha256": "1c29936a4b49dcfcc0f33addf71c19c2716e01434a1275efb97b31fc6a437e5d"
+    },
+    "response": {
+      "path": "artifacts/w02/runs/RUN-7069b61318a1473e819c35e7a69ac271/step-002.response.json",
+      "sha256": "d2813a5a3f22042b1cb514ec839d254946a28099e65379ec26b5ad43662dbce7"
+    }
+  }
+]

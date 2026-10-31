@@ -1,0 +1,183 @@
+{
+  "summary": {
+    "claims": 51,
+    "gold_items": 20,
+    "pass": 8,
+    "fail": 12,
+    "missed": 0,
+    "quoting_interviewer": 0,
+    "inference_claims": 0,
+    "conflict_groups": 0
+  },
+  "items": [
+    {
+      "id": "G01",
+      "result": "pass",
+      "claim": "zhou-system-full-members-120w",
+      "problems": [],
+      "matched": 2
+    },
+    {
+      "id": "G02",
+      "result": "pass",
+      "claim": "zhou-active-members-80w-stats-unknown",
+      "problems": [],
+      "matched": 1
+    },
+    {
+      "id": "G03",
+      "result": "fail",
+      "claim": "zhou-member-categories-order-channels-coupon-stages",
+      "problems": [
+        "kind=opinion，应为 fact"
+      ],
+      "matched": 1
+    },
+    {
+      "id": "G04",
+      "result": "fail",
+      "claim": "zhou-member-categories-order-channels-coupon-stages",
+      "problems": [
+        "kind=opinion，应为 fact"
+      ],
+      "matched": 1
+    },
+    {
+      "id": "G05",
+      "result": "pass",
+      "claim": "zhou-approval-not-his",
+      "problems": [],
+      "matched": 1
+    },
+    {
+      "id": "G06",
+      "result": "fail",
+      "claim": "zhou-access-security-hold",
+      "problems": [
+        "kind=opinion，应为 fact"
+      ],
+      "matched": 1
+    },
+    {
+      "id": "G07",
+      "result": "fail",
+      "claim": "zhou-data-verification-steps",
+      "problems": [
+        "kind=opinion，应为 fact"
+      ],
+      "matched": 3
+    },
+    {
+      "id": "G08",
+      "result": "fail",
+      "claim": "zhou-system-relation-deferred",
+      "problems": [
+        "evidence_status=reported，应为 unknown"
+      ],
+      "matched": 1
+    },
+    {
+      "id": "G09",
+      "result": "fail",
+      "claim": "wang-small-pilot-review-order",
+      "problems": [
+        "kind=opinion，应为 fact"
+      ],
+      "matched": 2
+    },
+    {
+      "id": "G10",
+      "result": "pass",
+      "claim": "wang-member-order-validation-not-owner",
+      "problems": [],
+      "matched": 1
+    },
+    {
+      "id": "G11",
+      "result": "fail",
+      "claim": "wang-approval-dept-unknown",
+      "problems": [
+        "kind=unknown，应为 fact/question"
+      ],
+      "matched": 1
+    },
+    {
+      "id": "G12",
+      "result": "fail",
+      "claim": "wang-member-revenue-trend-unknown",
+      "problems": [
+        "kind=unknown，应为 opinion/fact",
+        "evidence_status=unknown，应为 reported"
+      ],
+      "matched": 1
+    },
+    {
+      "id": "G13",
+      "result": "fail",
+      "claim": "wang-member-revenue-trend-unknown",
+      "problems": [
+        "kind=unknown，应为 fact/question"
+      ],
+      "matched": 1
+    },
+    {
+      "id": "G14",
+      "result": "fail",
+      "claim": "wang-store-kpi-rule-unknown",
+      "problems": [
+        "kind=unknown，应为 fact/opinion"
+      ],
+      "matched": 2
+    },
+    {
+      "id": "G15",
+      "result": "pass",
+      "claim": "chen-repurchase-decline-four-quarters",
+      "problems": [],
+      "matched": 1
+    },
+    {
+      "id": "G16",
+      "result": "pass",
+      "claim": "chen-shen-aging-judgment-not-confirmed",
+      "problems": [],
+      "matched": 1
+    },
+    {
+      "id": "G17",
+      "result": "fail",
+      "claim": "chen-hope-clarify-in-advance",
+      "problems": [
+        "kind=opinion，应为 fact",
+        "缺少限定（任一）：常见/不代表/不是说已经/非具体"
+      ],
+      "matched": 1
+    },
+    {
+      "id": "G18",
+      "result": "fail",
+      "claim": "chen-system-usage-unknown-point-zhou",
+      "problems": [
+        "kind=opinion，应为 fact/question"
+      ],
+      "matched": 1
+    },
+    {
+      "id": "G19",
+      "result": "pass",
+      "claim": "chen-store-work-record-two-aspects",
+      "problems": [],
+      "matched": 2
+    },
+    {
+      "id": "G20",
+      "result": "pass",
+      "claim": "chen-execution-confirm-by-store-staff",
+      "problems": [],
+      "matched": 3
+    }
+  ],
+  "quoting_interviewer": [],
+  "inferences": [],
+  "conflicts": []
+}

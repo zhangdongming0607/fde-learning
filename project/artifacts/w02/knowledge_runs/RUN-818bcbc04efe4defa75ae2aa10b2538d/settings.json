@@ -1,0 +1,21 @@
+{
+  "adapter": "w02-natural-0.1.0",
+  "config_path": "customer/w02/knowledge.json",
+  "question": "我们想看上次发券活动的效果，拿发券记录来算可以吗？",
+  "expected": "不够：发放和核销是两个环节，发放记录替代不了核销记录（老周、陈姐都这么说）；核销记在哪个系统、门店在哪核销未知（老周这次先不展开）；不能声称已查询数据。",
+  "include_knowledge": true,
+  "pair_id": "PAIR-400289130d8f42558d5f874e364a1cdf",
+  "profile": "compatible",
+  "model_policy": {
+    "gateway_cache_bypass": true,
+    "wire_format": "gateway-extra-body-v1",
+    "request_profile": "compatible",
+    "max_tokens": 32768,
+    "retry_max_tokens": 65536,
+    "timeout": 1800.0,
+    "retry_timeout": 1800.0,
+    "token_limit_field": "max_tokens",
+    "stream": true,
+    "extraction_thinking": "enabled"
+  }
+}

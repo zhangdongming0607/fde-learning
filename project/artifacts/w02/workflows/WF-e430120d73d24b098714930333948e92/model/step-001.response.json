@@ -1,0 +1,22 @@
+{
+  "message": {
+    "role": "assistant",
+    "content": "我先读取本轮目标、配置、材料、现有模型和核查记录。",
+    "tool_calls": [
+      {
+        "index": 0,
+        "id": "01a192c41d597b5a9e09b61693a69342",
+        "type": "function",
+        "function": {
+          "name": "inspect_materials",
+          "arguments": "{}"
+        }
+      }
+    ]
+  },
+  "usage": {
+    "prompt_tokens": 1622,
+    "completion_tokens": 38,
+    "total_tokens": 1660
+  }
+}

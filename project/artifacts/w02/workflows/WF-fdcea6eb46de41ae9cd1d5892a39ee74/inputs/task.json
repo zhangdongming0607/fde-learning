@@ -1,0 +1,9 @@
+{
+  "version": "w02-workflow-0.1.0",
+  "goal": "整理复购率和活跃会员口径所依赖的业务对象与定义（会员类别、订单渠道、券的发放与核销、活跃与全量会员），保留各角色的说法、条件与未知，不推断下降幅度；整理旧智能营销平台未被使用的不同说法、依据和缺口；并整理产出重点会员名单涉及的提出、确认与门店执行环节。",
+  "extraction_config": "customer/w02/extraction.json",
+  "skill": "customer/w02/skills/extract-business/SKILL.md",
+  "business_model": "docs/w02/business_model.md",
+  "notes": "docs/w02/interview_notes.md",
+  "max_steps": 24
+}

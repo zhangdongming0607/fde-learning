@@ -1,0 +1,35 @@
+[
+  {
+    "phase": "extract",
+    "request": {
+      "path": "artifacts/w02/runs/RUN-2f99c87b0d9a4000a7ac73251dcd9c20/step-001.request.json",
+      "sha256": "40f8591913538b1c3ccad47c00152093f92a4801156bab17fff2268f300a282c"
+    },
+    "response": {
+      "path": "artifacts/w02/runs/RUN-2f99c87b0d9a4000a7ac73251dcd9c20/step-001.response.json",
+      "sha256": "f372cc525749e06e7abfe404451777ea3ec13c55bcfe0751c4c69b949c56c3dc"
+    }
+  },
+  {
+    "phase": "extract",
+    "request": {
+      "path": "artifacts/w02/runs/RUN-2f99c87b0d9a4000a7ac73251dcd9c20/step-002.request.json",
+      "sha256": "77b1ea50c4e6a396171247439f4a141b491ef3f543f3a035a4f7efb32fcb639a"
+    },
+    "response": {
+      "path": "artifacts/w02/runs/RUN-2f99c87b0d9a4000a7ac73251dcd9c20/step-002.response.json",
+      "sha256": "b75992b2814195da3e8efc66d303af38c4cd2fb269f4bb20340f1bc067a7883f"
+    }
+  },
+  {
+    "phase": "extract",
+    "request": {
+      "path": "artifacts/w02/runs/RUN-2f99c87b0d9a4000a7ac73251dcd9c20/step-003.request.json",
+      "sha256": "10899dd2b76bf436e882d29bd37717178a122d6abdc5edcf17e72c00bee7122f"
+    },
+    "response": {
+      "path": "artifacts/w02/runs/RUN-2f99c87b0d9a4000a7ac73251dcd9c20/step-003.response.json",
+      "sha256": "0dc336398ee0065c689dbc8ab2857a0d85f3bd71cef3d4c0cfa90353246abfb2"
+    }
+  }
+]

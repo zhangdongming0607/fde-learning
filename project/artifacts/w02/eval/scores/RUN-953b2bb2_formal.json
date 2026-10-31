@@ -1,0 +1,225 @@
+{
+  "summary": {
+    "claims": 118,
+    "gold_items": 20,
+    "pass": 16,
+    "fail": 4,
+    "missed": 0,
+    "quoting_interviewer": 0,
+    "inference_claims": 0,
+    "conflict_groups": 6
+  },
+  "items": [
+    {
+      "id": "G01",
+      "result": "fail",
+      "claim": "CLM-001-0093",
+      "problems": [
+        "evidence_status=conflicting（冲突阶段改写，需人工看）"
+      ],
+      "matched": 4
+    },
+    {
+      "id": "G02",
+      "result": "pass",
+      "claim": "CLM-001-0094",
+      "problems": [],
+      "matched": 4
+    },
+    {
+      "id": "G03",
+      "result": "pass",
+      "claim": "CLM-001-0087",
+      "problems": [],
+      "matched": 6
+    },
+    {
+      "id": "G04",
+      "result": "pass",
+      "claim": "CLM-001-0090",
+      "problems": [],
+      "matched": 6
+    },
+    {
+      "id": "G05",
+      "result": "pass",
+      "claim": "CLM-001-0098",
+      "problems": [],
+      "matched": 4
+    },
+    {
+      "id": "G06",
+      "result": "pass",
+      "claim": "CLM-001-0098",
+      "problems": [],
+      "matched": 4
+    },
+    {
+      "id": "G07",
+      "result": "fail",
+      "claim": "CLM-001-0099",
+      "problems": [
+        "缺少限定（任一）：不代表/已经交付/已交付"
+      ],
+      "matched": 4
+    },
+    {
+      "id": "G08",
+      "result": "pass",
+      "claim": "CLM-001-0086",
+      "problems": [],
+      "matched": 1
+    },
+    {
+      "id": "G09",
+      "result": "pass",
+      "claim": "CLM-001-0105",
+      "problems": [],
+      "matched": 5
+    },
+    {
+      "id": "G10",
+      "result": "pass",
+      "claim": "CLM-001-0111",
+      "problems": [],
+      "matched": 4
+    },
+    {
+      "id": "G11",
+      "result": "pass",
+      "claim": "CLM-001-0111",
+      "problems": [],
+      "matched": 4
+    },
+    {
+      "id": "G12",
+      "result": "pass",
+      "claim": "CLM-001-0116",
+      "problems": [],
+      "matched": 4
+    },
+    {
+      "id": "G13",
+      "result": "pass",
+      "claim": "CLM-001-0115",
+      "problems": [],
+      "matched": 4
+    },
+    {
+      "id": "G14",
+      "result": "pass",
+      "claim": "CLM-001-0110",
+      "problems": [],
+      "matched": 2
+    },
+    {
+      "id": "G15",
+      "result": "pass",
+      "claim": "CLM-001-0072",
+      "problems": [],
+      "matched": 3
+    },
+    {
+      "id": "G16",
+      "result": "pass",
+      "claim": "CLM-001-0073",
+      "problems": [],
+      "matched": 3
+    },
+    {
+      "id": "G17",
+      "result": "fail",
+      "claim": "CLM-001-0067",
+      "problems": [
+        "缺少限定（任一）：常见/不代表/不是说已经/非具体"
+      ],
+      "matched": 3
+    },
+    {
+      "id": "G18",
+      "result": "fail",
+      "claim": "CLM-001-0070",
+      "problems": [
+        "evidence_status=conflicting（冲突阶段改写，需人工看）"
+      ],
+      "matched": 2
+    },
+    {
+      "id": "G19",
+      "result": "pass",
+      "claim": "CLM-001-0075",
+      "problems": [],
+      "matched": 3
+    },
+    {
+      "id": "G20",
+      "result": "pass",
+      "claim": "CLM-001-0079",
+      "problems": [],
+      "matched": 7
+    }
+  ],
+  "quoting_interviewer": [],
+  "inferences": [],
+  "conflicts": [
+    {
+      "id": "CONFLICT-001",
+      "claim_ids": [
+        "CLM-001-0003",
+        "CLM-001-0029",
+        "CLM-001-0093",
+        "CLM-001-0095"
+      ],
+      "question": "会员数口径需核实：沈总两次提到“80万活跃会员”并称按该口径看、具体口径待核实；周提到“系统全量会员数120万”，并明确其与活跃会员不是同一口径，且80万活跃会员按哪类会员、哪个渠道计算暂无可确认统计。请说明80万与120万分别统计的会员类别、渠道、时间范围和包含关系，以及二者是否同一口径。"
+    },
+    {
+      "id": "CONFLICT-002",
+      "claim_ids": [
+        "CLM-001-0008",
+        "CLM-001-0009",
+        "CLM-001-0042",
+        "CLM-001-0043"
+      ],
+      "question": "旧智能营销平台未继续使用的原因需核实：沈总认为供应商没交付好，但称不掌握技术问题、使用方式和效果；林称自己用过，操作反而多了三步，最后没人用了，但称具体页面和步骤内容不掌握。请区分“供应商交付问题”与“操作步骤增加/流程费劲”各自的范围和证据。"
+    },
+    {
+      "id": "CONFLICT-003",
+      "claim_ids": [
+        "CLM-001-0042",
+        "CLM-001-0044",
+        "CLM-001-0070"
+      ],
+      "question": "旧平台“最后没人用了”的适用范围需核实：林先说最后没人用了，后又表示除她之外当时还有谁在用不掌握、门店是否使用也说不准；陈表示门店是否用过旧平台、用起来怎样不掌握。请明确“没人用了”的时间段、用户/团队和门店范围。"
+    },
+    {
+      "id": "CONFLICT-004",
+      "claim_ids": [
+        "CLM-001-0014",
+        "CLM-001-0117",
+        "CLM-001-0118"
+      ],
+      "question": "复购率与会员收入的关系需核实：沈总称复购率连续四个季度下滑、直接关系到会员这块收入；王表示财务没有可确认的会员收入季度走势统计记录，且复购率变化不能直接当成收入记录来用。请说明复购率变化能否作为会员收入变化的依据，以及财务统计口径是什么。"
+    },
+    {
+      "id": "CONFLICT-005",
+      "claim_ids": [
+        "CLM-001-0020",
+        "CLM-001-0101",
+        "CLM-001-0102",
+        "CLM-001-0112",
+        "CLM-001-0113"
+      ],
+      "question": "会员/订单数据验证的审批与合规归属需核实：沈总称会员和订单数据给产品方验证，但谁批、走什么合规流程不能确认，得找老周和王经理核实；王表示会员和订单数据验证不归他、应找老周，且正式审批归哪个部门、审批人和授权额度均无可确认说法；周也表示正式审批不在他这里、按公司规定核实。请区分预算合同核查与数据验证审批，明确实际责任部门。"
+    },
+    {
+      "id": "CONFLICT-006",
+      "claim_ids": [
+        "CLM-001-0092",
+        "CLM-001-0019",
+        "CLM-001-0057",
+        "CLM-001-0081"
+      ],
+      "question": "门店范围、验证时间和活动人群/执行方案的确认权需核实：周称门店范围和时间由沈总、小林、陈姐定；沈总称验证范围他定不了全部、得跟运营和门店一起看；林称她先明确面向谁/做什么，但人群和执行方案要业务人员确认，且无授权自行发券或联系会员；陈称自己只在负责门店范围内可安排人员配合，执行确认在门店人员。请明确各自能定什么、不能定什么。"
+    }
+  ]
+}

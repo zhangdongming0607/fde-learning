@@ -1,0 +1,22 @@
+{
+  "message": {
+    "role": "assistant",
+    "content": "采用草稿提交被程序拦下：其中有些候选尚未单独送核查。我先补一批相关候选核查（含 0095）。",
+    "tool_calls": [
+      {
+        "index": 0,
+        "id": "01a192f71c9bffc60426e466a7c3b508",
+        "type": "function",
+        "function": {
+          "name": "show_evidence",
+          "arguments": "{\"claim_ids\": [\"CLM-001-0095\", \"CLM-001-0092\", \"CLM-001-0059\", \"CLM-001-0028\"]}"
+        }
+      }
+    ]
+  },
+  "usage": {
+    "prompt_tokens": 71934,
+    "completion_tokens": 582,
+    "total_tokens": 72516
+  }
+}

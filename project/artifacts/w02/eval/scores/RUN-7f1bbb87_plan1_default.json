@@ -1,0 +1,170 @@
+{
+  "summary": {
+    "claims": 31,
+    "gold_items": 20,
+    "pass": 7,
+    "fail": 0,
+    "missed": 13,
+    "quoting_interviewer": 0,
+    "inference_claims": 0,
+    "conflict_groups": 0
+  },
+  "items": [
+    {
+      "id": "G01",
+      "result": "missed",
+      "claim": null,
+      "problems": [
+        "未提取到"
+      ]
+    },
+    {
+      "id": "G02",
+      "result": "missed",
+      "claim": null,
+      "problems": [
+        "未提取到"
+      ]
+    },
+    {
+      "id": "G03",
+      "result": "missed",
+      "claim": null,
+      "problems": [
+        "未提取到"
+      ]
+    },
+    {
+      "id": "G04",
+      "result": "missed",
+      "claim": null,
+      "problems": [
+        "未提取到"
+      ]
+    },
+    {
+      "id": "G05",
+      "result": "missed",
+      "claim": null,
+      "problems": [
+        "未提取到"
+      ]
+    },
+    {
+      "id": "G06",
+      "result": "missed",
+      "claim": null,
+      "problems": [
+        "未提取到"
+      ]
+    },
+    {
+      "id": "G07",
+      "result": "missed",
+      "claim": null,
+      "problems": [
+        "未提取到"
+      ]
+    },
+    {
+      "id": "G08",
+      "result": "pass",
+      "claim": "C-023",
+      "problems": [],
+      "matched": 3
+    },
+    {
+      "id": "G09",
+      "result": "missed",
+      "claim": null,
+      "problems": [
+        "未提取到"
+      ]
+    },
+    {
+      "id": "G10",
+      "result": "missed",
+      "claim": null,
+      "problems": [
+        "未提取到"
+      ]
+    },
+    {
+      "id": "G11",
+      "result": "missed",
+      "claim": null,
+      "problems": [
+        "未提取到"
+      ]
+    },
+    {
+      "id": "G12",
+      "result": "missed",
+      "claim": null,
+      "problems": [
+        "未提取到"
+      ]
+    },
+    {
+      "id": "G13",
+      "result": "missed",
+      "claim": null,
+      "problems": [
+        "未提取到"
+      ]
+    },
+    {
+      "id": "G14",
+      "result": "missed",
+      "claim": null,
+      "problems": [
+        "未提取到"
+      ]
+    },
+    {
+      "id": "G15",
+      "result": "pass",
+      "claim": "C-010",
+      "problems": [],
+      "matched": 4
+    },
+    {
+      "id": "G16",
+      "result": "pass",
+      "claim": "C-012",
+      "problems": [],
+      "matched": 1
+    },
+    {
+      "id": "G17",
+      "result": "pass",
+      "claim": "C-007",
+      "problems": [],
+      "matched": 3
+    },
+    {
+      "id": "G18",
+      "result": "pass",
+      "claim": "C-027",
+      "problems": [],
+      "matched": 3
+    },
+    {
+      "id": "G19",
+      "result": "pass",
+      "claim": "C-014",
+      "problems": [],
+      "matched": 1
+    },
+    {
+      "id": "G20",
+      "result": "pass",
+      "claim": "C-016",
+      "problems": [],
+      "matched": 4
+    }
+  ],
+  "quoting_interviewer": [],
+  "inferences": [],
+  "conflicts": []
+}

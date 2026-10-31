@@ -1,0 +1,22 @@
+{
+  "message": {
+    "role": "assistant",
+    "content": "材料与现有认识已读取。下面实际提取候选并保存来源与运行记录。",
+    "tool_calls": [
+      {
+        "index": 0,
+        "id": "01a192c42cb3cf254e9052180e4bc790",
+        "type": "function",
+        "function": {
+          "name": "extract_candidates",
+          "arguments": "{}"
+        }
+      }
+    ]
+  },
+  "usage": {
+    "prompt_tokens": 13729,
+    "completion_tokens": 45,
+    "total_tokens": 13774
+  }
+}

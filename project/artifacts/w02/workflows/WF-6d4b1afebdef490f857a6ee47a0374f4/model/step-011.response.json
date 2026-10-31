@@ -1,0 +1,22 @@
+{
+  "message": {
+    "role": "assistant",
+    "content": "再补查一组：券的发放与核销记录位置这一缺口。",
+    "tool_calls": [
+      {
+        "index": 0,
+        "id": "01a192f4956ddd5b2a7c1960b9f45b6e",
+        "type": "function",
+        "function": {
+          "name": "show_evidence",
+          "arguments": "{\"claim_ids\": [\"CLM-001-0065\", \"CLM-001-0097\", \"CLM-001-0064\"]}"
+        }
+      }
+    ]
+  },
+  "usage": {
+    "prompt_tokens": 59741,
+    "completion_tokens": 402,
+    "total_tokens": 60143
+  }
+}

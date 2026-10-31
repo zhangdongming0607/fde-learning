@@ -1,0 +1,21 @@
+[
+  {
+    "phase": "extract",
+    "request": {
+      "path": "artifacts/w02/runs/RUN-b8835693abbe4cef9ee15f313fccf589/step-001.request.json",
+      "sha256": "e72261bfd01848c7623d9ec82c86e9fdd9dac5b95f38b77d1e3efdb30da6273c"
+    },
+    "response": {
+      "path": "artifacts/w02/runs/RUN-b8835693abbe4cef9ee15f313fccf589/step-001.response.json",
+      "sha256": "c0b35905bbe9d67b70e8c93efe36620fd6ce843cb45d9c16cdd290c854ecd61c"
+    }
+  },
+  {
+    "phase": "extract",
+    "request": {
+      "path": "artifacts/w02/runs/RUN-b8835693abbe4cef9ee15f313fccf589/step-002.request.json",
+      "sha256": "d062793593a8e1d7b36bff59d7ae86446249a8bf15d9784539915419d35b3036"
+    },
+    "response": null
+  }
+]

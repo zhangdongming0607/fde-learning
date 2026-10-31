@@ -1,0 +1,88 @@
+{
+  "contract_version": "w02-0.1.0-draft",
+  "run_id": "RUN-93ce5d289db54e839ac6d59453f7abdc",
+  "stage": "extraction",
+  "mode": "live",
+  "status": "failed",
+  "model": {
+    "provider": "api.siliconflow.cn",
+    "name": "deepseek-ai/DeepSeek-V4-Flash",
+    "adapter_version": "w02-extractor-0.1.0"
+  },
+  "implementation": [
+    {
+      "path": "artifacts/w02/runs/RUN-93ce5d289db54e839ac6d59453f7abdc/implementation/platform/fde_product/interview_extraction.py",
+      "sha256": "4158dd8cf48092fbd515c562e326d403e60d15feb76511dd04b9991c77de6e53"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-93ce5d289db54e839ac6d59453f7abdc/implementation/platform/fde_product/models.py",
+      "sha256": "17cac712394ede304b9d57f2c3adcf4cb5739bbd6264880efb9603bc5dacb223"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-93ce5d289db54e839ac6d59453f7abdc/implementation/tools/w02_interviews.py",
+      "sha256": "7dc6d6e55add4179c10f6cd41944606ee0a7a722ca2e5bc30b25ca4db31a3e00"
+    }
+  ],
+  "configuration": [
+    {
+      "path": "artifacts/w02/runs/RUN-93ce5d289db54e839ac6d59453f7abdc/snapshot/customer/w02/eval/extraction_eval_v1_jsonobj.json",
+      "sha256": "fe15c359b3463ce1689a8e1a6e8bb18398c0b47e48273c3e0bafef2dfa7069d4"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-93ce5d289db54e839ac6d59453f7abdc/snapshot/customer/w02/eval/prompt_v1.txt",
+      "sha256": "f0aded4ce8032fd9b3633e80c0c4a5344bf56c57683587ea9d931406ffb9fd2c"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-93ce5d289db54e839ac6d59453f7abdc/contracts/transcript.schema.json",
+      "sha256": "855f84b576d3f0b7bea82eac6b817fc0c8c723040f131f43075380110a823f9f"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-93ce5d289db54e839ac6d59453f7abdc/contracts/interview_facts.schema.json",
+      "sha256": "34358b1f9cca39f17f3d7b74abda732460be0beaba2f93b8e8f8bcaa3d2e0a80"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-93ce5d289db54e839ac6d59453f7abdc/contracts/run_evidence.schema.json",
+      "sha256": "4fed42abba5d6f9a727c52d6e3097e965ffa3b02ef855aadb2387ab1f890ebce"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-93ce5d289db54e839ac6d59453f7abdc/settings.json",
+      "sha256": "f90582632ba9c1db3414d2e599ecbb8230620a3b0c9a7d9919d49886584f5b03"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "artifacts/w02/runs/RUN-93ce5d289db54e839ac6d59453f7abdc/snapshot/artifacts/w02/sources/W2-interview-6c1d37b4-9a0c-5106-8e00-9852640f4ea4-transcript.json",
+      "sha256": "993be8707c253f277289a4011117ecb66e64bac63dad7c8cc60d7af8212cca43"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-93ce5d289db54e839ac6d59453f7abdc/snapshot/artifacts/w02/sources/W2-interview-c4a59a18-4bff-535c-a011-dd0dd0d508fd-transcript.json",
+      "sha256": "02ad528172ab0fbba0d960cddb3c14646c1f351fd780379ca0fd0328ff93ffab"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-93ce5d289db54e839ac6d59453f7abdc/snapshot/artifacts/w02/sources/W2-interview-f97c78e0-6636-5021-9f78-4daba5b3931c-transcript.json",
+      "sha256": "76ff207e8362bfa12a83331f9ecb8272190d04fb7679a108e7dbe99ac885ce5d"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "artifacts/w02/runs/RUN-93ce5d289db54e839ac6d59453f7abdc/step-001.request.json",
+      "sha256": "d48f885603b17025a1a44b68cd20a8d0f9a71aa3d5967bea8a9f8a3c2a690572"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-93ce5d289db54e839ac6d59453f7abdc/step-001.attempts.json",
+      "sha256": "b25a23eb6ef92dcb52f9f7919baf94eff650596813474394afd8c767d540e3ec"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-93ce5d289db54e839ac6d59453f7abdc/step-001.response.json",
+      "sha256": "c48ddd9a4650ef874810273259f7d1d65c1d6b5f8dfae3b87cf7baecdaba4b5a"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-93ce5d289db54e839ac6d59453f7abdc/steps.json",
+      "sha256": "fde743422e5da8dc73b6570c37fc1d23f84897697deff9f14fbc98c6b70d2e7c"
+    }
+  ],
+  "error": {
+    "code": "SCHEMA_INVALID",
+    "message": "检查位置：/claims/2/kind。本次失败；保留已有请求与公开响应，核对后创建新运行。"
+  }
+}

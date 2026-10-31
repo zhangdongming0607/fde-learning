@@ -1,0 +1,22 @@
+{
+  "message": {
+    "role": "assistant",
+    "content": "现在查看「重点会员名单的提出、确认与门店执行」一组原文。",
+    "tool_calls": [
+      {
+        "index": 0,
+        "id": "01a192f3b74d0adcc04bf6a2a7d32a4e",
+        "type": "function",
+        "function": {
+          "name": "show_evidence",
+          "arguments": "{\"claim_ids\": [\"CLM-001-0016\", \"CLM-001-0057\", \"CLM-001-0078\", \"CLM-001-0082\"]}"
+        }
+      }
+    ]
+  },
+  "usage": {
+    "prompt_tokens": 56082,
+    "completion_tokens": 402,
+    "total_tokens": 56484
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "message": {
+    "role": "assistant",
+    "content": "提取完成：共 118 条候选、6 组冲突。先查看第一组（口径依赖的业务对象）候选原文。",
+    "tool_calls": [
+      {
+        "index": 0,
+        "id": "01a192e203b53112c9ab94b5d7da94f0",
+        "type": "function",
+        "function": {
+          "name": "show_evidence",
+          "arguments": "{\"claim_ids\": [\"CLM-001-0088\", \"CLM-001-0089\", \"CLM-001-0090\", \"CLM-001-0093\", \"CLM-001-0095\"]}"
+        }
+      }
+    ]
+  },
+  "usage": {
+    "prompt_tokens": 45266,
+    "completion_tokens": 454,
+    "total_tokens": 45720
+  }
+}

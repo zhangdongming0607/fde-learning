@@ -1,0 +1,334 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:fde:w02:interview_facts:0.1.0-draft",
+  "$comment": "Development contract. Structural validity is not proof of a live run or homework acceptance.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "contract_version": {
+      "const": "w02-0.1.0-draft"
+    },
+    "artifact_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "scope_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+    },
+    "origin_run": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "run_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500,
+          "pattern": "^(?!/)(?!.*\\\\)(?!.*(?:^|/)\\.\\.(?:/|$))(?![A-Za-z]:)[^\\u0000]+$"
+        }
+      },
+      "required": [
+        "run_id",
+        "path"
+      ]
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "meeting_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "file": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500,
+                "pattern": "^(?!/)(?!.*\\\\)(?!.*(?:^|/)\\.\\.(?:/|$))(?![A-Za-z]:)[^\\u0000]+$"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            },
+            "required": [
+              "path",
+              "sha256"
+            ]
+          }
+        },
+        "required": [
+          "meeting_id",
+          "file"
+        ]
+      },
+      "minItems": 1,
+      "maxItems": 100
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "statement": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4000
+          },
+          "kind": {
+            "enum": [
+              "fact",
+              "opinion",
+              "inference",
+              "question"
+            ]
+          },
+          "evidence_status": {
+            "enum": [
+              "reported",
+              "verified",
+              "unknown",
+              "conflicting"
+            ]
+          },
+          "qualifiers": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4000
+            },
+            "minItems": 0,
+            "maxItems": 50
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "meeting_id": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+                },
+                "message_id": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+                },
+                "quote": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 8000
+                }
+              },
+              "required": [
+                "meeting_id",
+                "message_id",
+                "quote"
+              ]
+            },
+            "minItems": 0,
+            "maxItems": 50
+          },
+          "conflict_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+            },
+            "minItems": 0,
+            "maxItems": 1000,
+            "uniqueItems": true
+          },
+          "review": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "status": {
+                "enum": [
+                  "pending",
+                  "accepted",
+                  "revised",
+                  "rejected"
+                ]
+              },
+              "note": {
+                "type": "string",
+                "maxLength": 4000
+              }
+            },
+            "required": [
+              "status",
+              "note"
+            ],
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "status": {
+                      "not": {
+                        "const": "pending"
+                      }
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "note": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 4000
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "statement",
+          "kind",
+          "evidence_status",
+          "qualifiers",
+          "evidence",
+          "conflict_ids",
+          "review"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "evidence_status": {
+                  "enum": [
+                    "reported",
+                    "verified",
+                    "conflicting"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "evidence": {
+                  "minItems": 1
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "evidence_status": {
+                  "const": "verified"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "review": {
+                  "properties": {
+                    "status": {
+                      "enum": [
+                        "accepted",
+                        "revised"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "evidence_status": {
+                  "const": "conflicting"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "conflict_ids": {
+                  "minItems": 1
+                }
+              }
+            }
+          }
+        ]
+      },
+      "minItems": 1,
+      "maxItems": 1000
+    },
+    "conflicts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "claim_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+            },
+            "minItems": 2,
+            "maxItems": 1000,
+            "uniqueItems": true
+          },
+          "question": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4000
+          },
+          "next_step": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4000
+          }
+        },
+        "required": [
+          "id",
+          "claim_ids",
+          "question",
+          "next_step"
+        ]
+      },
+      "minItems": 0,
+      "maxItems": 100
+    }
+  },
+  "required": [
+    "contract_version",
+    "artifact_id",
+    "revision",
+    "scope_id",
+    "origin_run",
+    "sources",
+    "claims",
+    "conflicts"
+  ]
+}

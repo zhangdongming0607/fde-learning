@@ -1,0 +1,22 @@
+{
+  "message": {
+    "role": "assistant",
+    "content": "已读取材料与模板，接下来实际提取候选。",
+    "tool_calls": [
+      {
+        "index": 0,
+        "id": "01a192aebf9b2a2fb1a65ba7715c2fb6",
+        "type": "function",
+        "function": {
+          "name": "extract_candidates",
+          "arguments": "{}"
+        }
+      }
+    ]
+  },
+  "usage": {
+    "prompt_tokens": 13759,
+    "completion_tokens": 40,
+    "total_tokens": 13799
+  }
+}

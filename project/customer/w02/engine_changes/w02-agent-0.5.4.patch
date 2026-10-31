@@ -1,0 +1,415 @@
+diff --color -ruN -x . a/platform/fde_product/extraction_workflow.py b/platform/fde_product/extraction_workflow.py
+--- a/platform/fde_product/extraction_workflow.py	2026-10-31 10:48:55
++++ b/platform/fde_product/extraction_workflow.py	2026-10-31 09:08:04
+@@ -230,7 +230,7 @@
+ def advance(ws,path,model,extractor):
+     s=load_session(ws,path)
+     for adapter in (model,extractor):
+-        if hasattr(adapter,"deadline"):adapter.deadline=time.monotonic()+600
++        if hasattr(adapter,"deadline"):adapter.deadline=time.monotonic()+float(os.environ.get("FDE_WORKFLOW_DEADLINE",600))
+     require(s["status"]=="active","HUMAN_ACTION_REQUIRED",s["status"])
+     private_path=".runtime/w02-workflow/"+PurePosixPath(s["folder"]).name+".json"
+     private=ws.load(private_path) if ws.path(private_path).exists() else {}
+diff --color -ruN -x . a/platform/fde_product/interview_extraction.py b/platform/fde_product/interview_extraction.py
+--- a/platform/fde_product/interview_extraction.py	2026-10-31 10:48:55
++++ b/platform/fde_product/interview_extraction.py	2026-10-31 09:38:47
+@@ -275,7 +275,23 @@
+             {"role":"user", "content":json.dumps(data,ensure_ascii=False)}]
+ 
+ 
+-def merge_claims(responses):
++TRIMMED_PERIOD_NOTE = "程序校正：去掉了模型在引用末尾自行补上的句号，其余与原文逐字一致。"
++
++
++def trim_added_period(claim, contents):
++    """Models cut a quote mid-sentence and end it with “。” that the source does not have there."""
++    changed = False
++    for evidence in claim["evidence"]:
++        source = contents.get((evidence["meeting_id"], evidence["message_id"]))
++        quote = evidence["quote"]
++        if source is not None and quote not in source and quote.endswith("。") and len(quote) > 1 and quote[:-1] in source:
++            evidence["quote"], changed = quote[:-1], True
++    if changed:
++        claim["qualifiers"].append(TRIMMED_PERIOD_NOTE)
++
++
++def merge_claims(responses, transcripts=None):
++    contents = {(t["meeting_id"], m["id"]): m["content"] for t in transcripts or [] for m in t["messages"]}
+     claims = []
+     for number, response in enumerate(responses, 1):
+         validate(payload_schema("extract"), response)
+@@ -283,11 +299,28 @@
+         for item in response["claims"]:
+             require(item["review"] == {"status":"pending", "note":""}
+                     and item["evidence_status"] in ("reported", "unknown") and not item["conflict_ids"], "MODEL_REVIEW_FORBIDDEN")
+-            claims.append({**deepcopy(item), "id":f"CLM-{number:03}-{len(claims)+1:04}"})
++            claim = {**deepcopy(item), "id":f"CLM-{number:03}-{len(claims)+1:04}"}
++            trim_added_period(claim, contents)
++            claims.append(claim)
+     require(len(claims) <= 1000, "CLAIM_LIMIT")
+     return claims
+ 
+ 
++def set_aside_unquotable(claims, transcripts):
++    """Move claims whose quote is not verbatim in the cited message out of review instead of failing the run."""
++    contents = {(t["meeting_id"], m["id"]): m["content"] for t in transcripts for m in t["messages"]}
++    kept, aside = [], []
++    for claim in claims:
++        problems = [{"message_id": e["message_id"],
++                     "reason": "REFERENCE_INVALID" if (e["meeting_id"], e["message_id"]) not in contents else "QUOTE_NOT_FOUND"}
++                    for e in claim["evidence"] if e["quote"] not in contents.get((e["meeting_id"], e["message_id"]), "")]
++        if problems:
++            aside.append({"problems": problems, "claim": claim})
++        else:
++            kept.append(claim)
++    return kept, aside
++
++
+ def add_conflicts(claims, response):
+     validate(payload_schema("conflicts"), response)
+     result = deepcopy(claims)
+@@ -348,9 +381,11 @@
+         for part in parts:
+             response=call("extract",part)
+             # Reject invalid excerpts before spending a reconciliation call.
+-            current=merge_claims([response]);validate_facts(ws,make_facts(run,transcripts,current,[],folder))
++            current,_=set_aside_unquotable(merge_claims([response],transcripts),transcripts)
++            validate_facts(ws,make_facts(run,transcripts,current,[],folder))
+             raw_claims.append(response)
+-        claims=merge_claims(raw_claims)
++        claims,aside=set_aside_unquotable(merge_claims(raw_claims,transcripts),transcripts)
++        if aside: run["outputs"].append(ws.write(folder+"/set_aside.json",aside))
+         require(len(json.dumps(claims,ensure_ascii=False))<=config["reconcile_chars"],"RECONCILE_LIMIT")
+         claims,conflicts=add_conflicts(claims,call("conflicts",claims))
+         facts=make_facts(run,transcripts,claims,conflicts,folder)
+@@ -408,7 +443,7 @@
+     if policy is not None:
+         # Earlier records predate explicit wire/stage policies. Reconstruct the
+         # recorded protocol, never silently reinterpret it with today's defaults.
+-        policy = {"wire_format":"legacy-top-level", "extraction_thinking":"enabled", "gateway_cache_bypass":False, **policy}
++        policy = {"wire_format":"legacy-top-level", "extraction_thinking":"enabled", "gateway_cache_bypass":False, "stream":False, **policy}
+         model = ExtractionModel(profile=profile,url="https://example.invalid/chat",key="not-used",model=model_name,**policy)
+         model.phase = phase
+         return model._payload(messages,[])
+@@ -443,12 +478,13 @@
+     for t in transcripts: ws.schema("transcript",t)
+     parts=batches(transcripts,config)
+     steps=one("outputs","/steps.json");require(len(steps)==len(parts)+1,"STEP_COUNT_MISMATCH")
+-    responses=[]
++    responses=[];aside=[]
+     for number,step in enumerate(steps):
+         phase="extract" if number<len(parts) else "conflicts"
+         require(step["phase"]==phase and step["request"] in run["outputs"] and step["response"] in run["outputs"],"RUN_REFERENCE_INVALID")
+         request=ws.verify(step["request"]);response=ws.verify(step["response"])
+-        content=parts[number] if phase=="extract" else merge_claims(responses)
++        if phase=="extract": content=parts[number]
++        else: content,aside=set_aside_unquotable(merge_claims(responses,transcripts),transcripts)
+         require(request.get("messages")==model_messages(phase,content,config,prompt,instructions=instructions) and not request.get("tools"),"EXTRACTION_INPUT_MISMATCH")
+         if run["mode"]=="live":
+             require(request.get("model")==run["model"]["name"],"MODEL_MISMATCH")
+@@ -463,6 +499,8 @@
+     candidate=one("outputs","/candidates.json")
+     expected=make_facts(run,transcripts,claims,conflicts,str(PurePosixPath(path).parent))
+     require(candidate==expected,"EXTRACTION_MISMATCH")
++    aside_refs=[r for r in run["outputs"] if r["path"].endswith("/set_aside.json")]
++    require(len(aside_refs)==(1 if aside else 0) and (not aside or ws.verify(aside_refs[0])==aside),"EXTRACTION_MISMATCH")
+     validate_facts(ws,candidate)
+     return run
+ 
+diff --color -ruN -x . a/platform/fde_product/models.py b/platform/fde_product/models.py
+--- a/platform/fde_product/models.py	2026-10-31 10:48:55
++++ b/platform/fde_product/models.py	2026-10-31 08:05:31
+@@ -59,10 +59,39 @@
+     if values and all(type(v) is int and v>=0 for v in values):result["completion_tokens_details"]={"reasoning_tokens":sum(values)}
+     return result
+ 
++def read_stream(response,deadline):
++    """Assemble OpenAI-style SSE chunks into the same body shape as a non-streaming reply."""
++    content,reasoning,finish,usage,rid,raw,text=[],[],None,None,None,0,0
++    for line in response:
++        # Each SSE chunk wraps a few characters in hundreds of bytes, so cap the assembled text separately.
++        raw+=len(line)
++        if raw>200_000_000 or text>2_000_000:raise ModelError("MODEL_RESPONSE_TOO_LARGE")
++        if time.monotonic()>deadline:raise TimeoutError()
++        line=line.decode("utf-8").strip()
++        if not line.startswith("data:"):continue
++        data=line[5:].strip()
++        if data=="[DONE]":break
++        chunk=json.loads(data)
++        if "error" in chunk:raise ValueError("stream error")
++        rid=chunk.get("id",rid)
++        if chunk.get("usage"):usage=chunk["usage"]
++        for choice in chunk.get("choices") or []:
++            delta=choice.get("delta") or {}
++            if delta.get("tool_calls"):raise ValueError("tool calls are not streamed")
++            for key,parts in (("content",content),("reasoning_content",reasoning)):
++                if isinstance(delta.get(key),str):parts.append(delta[key]);text+=len(delta[key])
++            if choice.get("finish_reason"):finish=choice["finish_reason"]
++    message={"role":"assistant","content":"".join(content)}
++    if reasoning:message["reasoning_content"]="".join(reasoning)
++    body={"choices":[{"message":message,"finish_reason":finish}],"usage":usage or {}}
++    if rid is not None:body["id"]=rid
++    return body
++
+ class CompatibleModel:
+     mode="live"
+     def __init__(self,url=None,key=None,model=None,timeout=90,*,request_profile=None,
+-                 max_tokens=None,retry_max_tokens=None,retry_timeout=None,token_limit_field=None,wire_format=WIRE_FORMAT,gateway_cache_bypass=True):
++                 max_tokens=None,retry_max_tokens=None,retry_timeout=None,token_limit_field=None,wire_format=WIRE_FORMAT,gateway_cache_bypass=True,
++                 stream=None):
+         self.url=url or os.environ.get("FDE_MODEL_URL","")
+         self.key=key or os.environ.get("FDE_MODEL_KEY","")
+         self.model=model or os.environ.get("FDE_MODEL_NAME","")
+@@ -72,6 +101,9 @@
+         self.wire_format = wire_format
+         if type(gateway_cache_bypass) is not bool:raise ModelError("MODEL_CACHE_POLICY_INVALID")
+         self.gateway_cache_bypass = gateway_cache_bypass
++        # Non-streaming requests are dropped by some providers after ~300 s without any bytes sent.
++        self.stream = os.environ.get("FDE_MODEL_STREAM", "") == "1" if stream is None else stream
++        if type(self.stream) is not bool:raise ModelError("MODEL_POLICY_INVALID")
+         if self.request_profile not in ("compatible","json-object","deepseek-json","gateway-json","deepseek-low","gateway-low"):
+             raise ModelError("MODEL_PROFILE_INVALID")
+         try:
+@@ -94,12 +126,17 @@
+         if not parsed.hostname:raise ModelError("MODEL_URL_INVALID")
+ 
+     def policy_config(self):
+-        return {"gateway_cache_bypass":self.gateway_cache_bypass,"wire_format":self.wire_format,"request_profile":self.request_profile,"max_tokens":self.max_tokens,
++        policy={"gateway_cache_bypass":self.gateway_cache_bypass,"wire_format":self.wire_format,"request_profile":self.request_profile,"max_tokens":self.max_tokens,
+                 "retry_max_tokens":self.retry_max_tokens,"timeout":self.timeout,
+                 "retry_timeout":self.retry_timeout,"token_limit_field":self.token_limit_field}
++        # Only recorded when on, so non-streaming records stay identical to the unmodified tool.
++        if self.stream:policy["stream"]=True
++        return policy
+ 
+     def _payload(self,messages,tools):
+-        payload={"model":self.model,"messages":messages,"stream":False,self.token_limit_field:self.max_tokens}
++        streaming=self.stream and not tools
++        payload={"model":self.model,"messages":messages,"stream":streaming,self.token_limit_field:self.max_tokens}
++        if streaming:payload["stream_options"]={"include_usage":True}
+         if tools:payload.update(tools=tools,tool_choice="auto")
+         if self.request_profile in ("json-object","deepseek-json","gateway-json") and not tools:
+             payload["response_format"]={"type":"json_object"}
+@@ -119,10 +156,14 @@
+             if remaining<=0:raise TimeoutError()
+             sock=getattr(getattr(getattr(response,"fp",None),"raw",None),"_sock",None)
+             if sock is not None:sock.settimeout(remaining)
+-            raw=response.read(2_000_001)
+-            if time.monotonic()>deadline:raise TimeoutError()
+-        if len(raw)>2_000_000:raise ModelError("MODEL_RESPONSE_TOO_LARGE")
+-        return json.loads(raw),{k:v for k,v in headers.items() if k in (
++            if payload.get("stream"):
++                body=read_stream(response,deadline)
++            else:
++                raw=response.read(2_000_001)
++                if time.monotonic()>deadline:raise TimeoutError()
++                if len(raw)>2_000_000:raise ModelError("MODEL_RESPONSE_TOO_LARGE")
++                body=json.loads(raw)
++        return body,{k:v for k,v in headers.items() if k in (
+             "llm_provider-x-request-id","x-request-id","x-litellm-call-id","request-id","x-bce-request-id")}
+ 
+     def complete(self,messages,tools):
+diff --color -ruN -x . a/tests/test_quote_trim.py b/tests/test_quote_trim.py
+--- a/tests/test_quote_trim.py	1969-12-31 16:00:00
++++ b/tests/test_quote_trim.py	2026-10-31 09:20:40
+@@ -0,0 +1,36 @@
++"""No network: only a trailing “。” the source lacks is trimmed; every other mismatch is left for validation."""
++from fde_product.interview_extraction import merge_claims, TRIMMED_PERIOD_NOTE
++
++TRANSCRIPTS = [{"meeting_id": "M1", "messages": [{"id": "MSG-1", "content": "口径需要项目组核实；80 万活跃会员没有统计。"}]}]
++
++
++def claim(quote):
++    return {"id": "x", "statement": "s", "kind": "fact", "evidence_status": "reported", "qualifiers": [],
++            "evidence": [{"meeting_id": "M1", "message_id": "MSG-1", "quote": quote}],
++            "conflict_ids": [], "review": {"status": "pending", "note": ""}}
++
++
++def merged(quote):
++    return merge_claims([{"claims": [claim(quote)]}], TRANSCRIPTS)[0]
++
++
++def test_added_trailing_period_is_trimmed_and_noted():
++    c = merged("口径需要项目组核实。")
++    assert c["evidence"][0]["quote"] == "口径需要项目组核实"
++    assert c["qualifiers"] == [TRIMMED_PERIOD_NOTE]
++
++
++def test_exact_quote_is_untouched():
++    c = merged("80 万活跃会员没有统计。")
++    assert c["evidence"][0]["quote"] == "80 万活跃会员没有统计。" and c["qualifiers"] == []
++
++
++def test_other_mismatches_are_not_repaired():
++    for quote in ("口径需要核实。", "口径需要项目组核实！", "。", "口径需要项目组核实；80万"):
++        c = merged(quote)
++        assert c["evidence"][0]["quote"] == quote and c["qualifiers"] == []
++
++
++def test_without_transcripts_nothing_changes():
++    c = merge_claims([{"claims": [claim("口径需要项目组核实。")]}])[0]
++    assert c["evidence"][0]["quote"] == "口径需要项目组核实。"
+diff --color -ruN -x . a/tests/test_set_aside.py b/tests/test_set_aside.py
+--- a/tests/test_set_aside.py	1969-12-31 16:00:00
++++ b/tests/test_set_aside.py	2026-10-31 09:39:20
+@@ -0,0 +1,47 @@
++"""No network: unquotable claims are moved aside and recorded instead of voiding the run."""
++import hashlib
++import json
++from test_w02_extraction import Fixture, sample, run_sample  # noqa: F401  (pytest fixture)
++from fde_product.interview_extraction import validate_run, CheckError
++import pytest
++
++
++def broken_first_claim(data, result):
++    if "claims" not in result:
++        return result
++    claims = result["claims"]
++    bad_quote = {**claims[0], "evidence": [{**claims[0]["evidence"][0], "quote": "原文没有的句子"}]}
++    bad_ref = {**claims[1], "evidence": [dict(meeting_id="missing", message_id="MSG-1", quote="x")]}
++    return {"claims": [bad_quote, bad_ref] + claims[2:]}
++
++
++def test_unquotable_claims_are_set_aside_and_the_run_succeeds(sample):
++    model = Fixture(broken_first_claim)
++    ws, path, run = run_sample(sample, model)
++    assert run["status"] == "succeeded"
++    aside = ws.verify(next(r for r in run["outputs"] if r["path"].endswith("/set_aside.json")))
++    assert [p["reason"] for a in aside for p in a["problems"]] == ["QUOTE_NOT_FOUND", "REFERENCE_INVALID"]
++    facts = ws.verify(next(r for r in run["outputs"] if r["path"].endswith("/candidates.json")))
++    kept = {c["id"] for c in facts["claims"]}
++    assert kept and not kept & {a["claim"]["id"] for a in aside}
++    assert all(c["id"] in kept for c in model.calls[-1]["claims"]) and len(model.calls[-1]["claims"]) == len(kept)
++    assert validate_run(ws, path) == run
++
++
++def test_tampered_set_aside_record_is_detected(sample):
++    ws, path, run = run_sample(sample, Fixture(broken_first_claim))
++    ref = next(r for r in run["outputs"] if r["path"].endswith("/set_aside.json"))
++    aside = ws.verify(ref)
++    aside[0]["problems"][0]["reason"] = "EDITED"
++    raw = json.dumps(aside, ensure_ascii=False, indent=2).encode()
++    ws.path(ref["path"]).write_bytes(raw)
++    ref["sha256"] = hashlib.sha256(raw).hexdigest()
++    ws.path(path).write_text(json.dumps(run, ensure_ascii=False))
++    with pytest.raises(CheckError, match="EXTRACTION_MISMATCH"):
++        validate_run(ws, path)
++
++
++def test_clean_run_writes_no_set_aside_record(sample):
++    ws, path, run = run_sample(sample)
++    assert not any(r["path"].endswith("/set_aside.json") for r in run["outputs"])
++    validate_run(ws, path)
+diff --color -ruN -x . a/tests/test_stream_patch.py b/tests/test_stream_patch.py
+--- a/tests/test_stream_patch.py	1969-12-31 16:00:00
++++ b/tests/test_stream_patch.py	2026-10-31 08:05:35
+@@ -0,0 +1,76 @@
++"""No network: the opt-in streaming path and its record reconstruction."""
++import json
++import time
++import pytest
++from fde_product.models import CompatibleModel, ModelError, read_stream
++from fde_product.interview_extraction import ExtractionModel, expected_model_request
++
++
++def sse(*chunks):
++    return [f"data: {json.dumps(c, ensure_ascii=False)}\n".encode() for c in chunks] + [b"data: [DONE]\n"]
++
++
++def make(**kw):
++    return CompatibleModel(url="https://example.invalid/chat", key="k", model="m", **kw)
++
++
++def test_stream_chunks_become_a_normal_body():
++    lines = sse({"id": "r1", "choices": [{"delta": {"role": "assistant", "reasoning_content": "想"}}]},
++                {"id": "r1", "choices": [{"delta": {"content": "{\"a\":"}}]},
++                {"id": "r1", "choices": [{"delta": {"content": "1}"}, "finish_reason": "stop"}]},
++                {"id": "r1", "choices": [], "usage": {"prompt_tokens": 3, "completion_tokens": 5, "total_tokens": 8}})
++    body = read_stream(iter([b": keep-alive\n"] + lines), time.monotonic() + 60)
++    assert body["id"] == "r1"
++    assert body["choices"][0] == {"message": {"role": "assistant", "content": "{\"a\":1}", "reasoning_content": "想"},
++                                  "finish_reason": "stop"}
++    assert body["usage"]["total_tokens"] == 8
++
++
++def test_chunk_overhead_does_not_count_as_a_large_reply():
++    filler = "x" * 400
++    chunks = [{"id": "r", "pad": filler, "choices": [{"delta": {"content": "字"}}]} for _ in range(6000)]
++    body = read_stream(iter(sse(*chunks)), time.monotonic() + 60)
++    assert len(body["choices"][0]["message"]["content"]) == 6000
++
++
++def test_assembled_text_over_limit_is_rejected():
++    chunks = [{"choices": [{"delta": {"content": "x" * 100_000}}]} for _ in range(25)]
++    with pytest.raises(ModelError):
++        read_stream(iter(sse(*chunks)), time.monotonic() + 60)
++
++
++def test_stream_error_chunk_is_rejected():
++    with pytest.raises(ValueError):
++        read_stream(iter(sse({"error": {"message": "x"}})), time.monotonic() + 60)
++
++
++def test_stream_past_deadline_times_out():
++    with pytest.raises(TimeoutError):
++        read_stream(iter(sse({"choices": [{"delta": {"content": "x"}}]})), time.monotonic() - 1)
++
++
++def test_off_by_default_keeps_original_request_and_policy(monkeypatch):
++    monkeypatch.delenv("FDE_MODEL_STREAM", raising=False)
++    m = make()
++    assert m._payload([], [])["stream"] is False and "stream_options" not in m._payload([], [])
++    assert "stream" not in m.policy_config()
++
++
++def test_on_streams_only_without_tools(monkeypatch):
++    monkeypatch.setenv("FDE_MODEL_STREAM", "1")
++    m = make()
++    assert m._payload([], [])["stream"] is True and m.policy_config()["stream"] is True
++    assert m._payload([], [{"type": "function"}])["stream"] is False
++
++
++def test_checker_reconstruction_follows_the_record_not_the_shell(monkeypatch):
++    monkeypatch.setenv("FDE_MODEL_STREAM", "1")
++    streamed = ExtractionModel(url="https://example.invalid/chat", key="k", model="m")
++    streamed.phase = "extract"
++    policy = streamed.policy_config()
++    assert expected_model_request("compatible", "m", [], policy, phase="extract") == streamed._payload([], [])
++    monkeypatch.setenv("FDE_MODEL_STREAM", "")
++    plain = ExtractionModel(url="https://example.invalid/chat", key="k", model="m")
++    plain.phase = "extract"
++    monkeypatch.setenv("FDE_MODEL_STREAM", "1")
++    assert expected_model_request("compatible", "m", [], plain.policy_config(), phase="extract")["stream"] is False
+diff --color -ruN -x . a/tests/test_w02_extraction.py b/tests/test_w02_extraction.py
+--- a/tests/test_w02_extraction.py	2026-10-31 10:48:55
++++ b/tests/test_w02_extraction.py	2026-10-31 09:38:50
+@@ -77,8 +77,6 @@
+ 
+ @pytest.mark.parametrize('change,code',[
+     (lambda d,r:{'claims':[{**r['claims'][0],'review':{'status':'accepted','note':'auto'}}]},'MODEL_REVIEW_FORBIDDEN'),
+-    (lambda d,r:{'claims':[{**r['claims'][0],'evidence':[dict(meeting_id='missing',message_id='MSG-1',quote='x')]}]},'REFERENCE_INVALID'),
+-    (lambda d,r:{'claims':[{**r['claims'][0],'evidence':[{**r['claims'][0]['evidence'][0],'quote':'原文没有的句子'}]}]},'QUOTE_NOT_FOUND'),
+     (lambda d,r:{'claims':[r['claims'][0],r['claims'][0]]},'DUPLICATE_ID'),
+     (lambda d,r:{'claims':[{**r['claims'][0],'extra':'private'}]},'SCHEMA_INVALID'),
+ ])
+diff --color -ruN -x . a/tools/w02_interviews.py b/tools/w02_interviews.py
+--- a/tools/w02_interviews.py	2026-10-31 10:48:55
++++ b/tools/w02_interviews.py	2026-10-31 08:01:03
+@@ -1,6 +1,7 @@
+ """W2 learner extraction: configure, extract, inspect, review and check."""
+ import argparse
+ import json
++import os
+ from pathlib import Path
+ import sys
+ 
+@@ -59,7 +60,8 @@
+             parts=batches(transcripts,config)
+             if args.action=="inspect": result={"status":"input_checked","meetings":len(transcripts),"batches":len(parts),"planned_model_calls":len(parts)+1,"scope_id":config["scope_id"],"profile":config["profile"]}
+             else:
+-                model=ExtractionModel(profile=config["profile"],timeout=90)
++                model=ExtractionModel(profile=config["profile"],timeout=90,
++                                      extraction_thinking=os.environ.get("FDE_EXTRACTION_THINKING","enabled"))
+                 path=extract(ws,args.config,model);run=ws.load(path)
+                 result={"status":run["status"],"run":path,"error":run["error"]}
+         elif args.action=="review-start": result={"status":"pending_review","path":start_review(ws,args.path,args.output)}

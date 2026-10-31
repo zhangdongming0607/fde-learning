@@ -1,0 +1,22 @@
+{
+  "message": {
+    "role": "assistant",
+    "content": "第一组反馈已知悉：0088/0089/0090/0093 采用；CONFLICT-001 按口径差异处理，0095 证据状态为 unknown。接下来查看下一组（各角色对复购下滑与活跃会员的说法）原文。",
+    "tool_calls": [
+      {
+        "index": 0,
+        "id": "01a192f0e94e5a4dd55e6dc6ad21fcc4",
+        "type": "function",
+        "function": {
+          "name": "show_evidence",
+          "arguments": "{\"claim_ids\": [\"CLM-001-0003\", \"CLM-001-0029\", \"CLM-001-0047\", \"CLM-001-0072\"]}"
+        }
+      }
+    ]
+  },
+  "usage": {
+    "prompt_tokens": 49594,
+    "completion_tokens": 412,
+    "total_tokens": 50006
+  }
+}

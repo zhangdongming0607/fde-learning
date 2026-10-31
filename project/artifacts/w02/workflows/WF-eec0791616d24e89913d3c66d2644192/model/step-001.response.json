@@ -1,0 +1,22 @@
+{
+  "message": {
+    "role": "assistant",
+    "content": "I'll start by inspecting the materials, existing model, and review records.",
+    "tool_calls": [
+      {
+        "index": 0,
+        "id": "01a192b874b163c3a264cea6b6e190ad",
+        "type": "function",
+        "function": {
+          "name": "inspect_materials",
+          "arguments": "{}"
+        }
+      }
+    ]
+  },
+  "usage": {
+    "prompt_tokens": 1622,
+    "completion_tokens": 38,
+    "total_tokens": 1660
+  }
+}

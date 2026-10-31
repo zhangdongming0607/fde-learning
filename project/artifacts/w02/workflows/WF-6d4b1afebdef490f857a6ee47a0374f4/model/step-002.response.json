@@ -1,0 +1,22 @@
+{
+  "message": {
+    "role": "assistant",
+    "content": "已读取目标、7 份材料、模板与配置。现在按已确认配置实际提取候选。",
+    "tool_calls": [
+      {
+        "index": 0,
+        "id": "01a192d5305e588caeb05d36aa5b55ec",
+        "type": "function",
+        "function": {
+          "name": "extract_candidates",
+          "arguments": "{}"
+        }
+      }
+    ]
+  },
+  "usage": {
+    "prompt_tokens": 13770,
+    "completion_tokens": 51,
+    "total_tokens": 13821
+  }
+}

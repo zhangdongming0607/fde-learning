@@ -1,0 +1,22 @@
+{
+  "message": {
+    "role": "assistant",
+    "content": "已读取材料与现有模型模板。现在按配置实际提取候选。",
+    "tool_calls": [
+      {
+        "index": 0,
+        "id": "01a192b8a37672f1f36e00ab557fc1c5",
+        "type": "function",
+        "function": {
+          "name": "extract_candidates",
+          "arguments": "{}"
+        }
+      }
+    ]
+  },
+  "usage": {
+    "prompt_tokens": 13753,
+    "completion_tokens": 42,
+    "total_tokens": 13795
+  }
+}

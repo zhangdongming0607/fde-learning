@@ -1,0 +1,104 @@
+{
+  "contract_version": "w02-0.1.0-draft",
+  "run_id": "RUN-478f8449dccf4f199ffe06eb01199d32",
+  "stage": "extraction",
+  "mode": "live",
+  "status": "failed",
+  "model": {
+    "provider": "api.siliconflow.cn",
+    "name": "deepseek-ai/DeepSeek-V4.1-Flash",
+    "adapter_version": "w02-extractor-0.1.0"
+  },
+  "implementation": [
+    {
+      "path": "artifacts/w02/runs/RUN-478f8449dccf4f199ffe06eb01199d32/implementation/platform/fde_product/interview_extraction.py",
+      "sha256": "f8554257462ffacab499d22c1cb35c6b6294826cbfa621a5f5c485c9ae7dbd61"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-478f8449dccf4f199ffe06eb01199d32/implementation/platform/fde_product/models.py",
+      "sha256": "64f063c8191ddc584eb936db1eecbed8942860e563e825ff56eba3c04e5dd2a8"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-478f8449dccf4f199ffe06eb01199d32/implementation/tools/w02_interviews.py",
+      "sha256": "23addaf44784f2bd0dad4702dc68104a7bc357d2f94922ebf2e0b198a56b2f5c"
+    }
+  ],
+  "configuration": [
+    {
+      "path": "artifacts/w02/runs/RUN-478f8449dccf4f199ffe06eb01199d32/snapshot/artifacts/w02/workflows/WF-eec0791616d24e89913d3c66d2644192/extraction.json",
+      "sha256": "0c83363f44ee87a23766badbde0ddea9b72b71b34fdc66ec19b7b34c2846063c"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-478f8449dccf4f199ffe06eb01199d32/snapshot/artifacts/w02/workflows/WF-eec0791616d24e89913d3c66d2644192/inputs/prompt.md",
+      "sha256": "ebdf2425eae11fe9bd02df4692bc93ac800c73361619036e147553cf00ab8e4b"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-478f8449dccf4f199ffe06eb01199d32/contracts/transcript.schema.json",
+      "sha256": "855f84b576d3f0b7bea82eac6b817fc0c8c723040f131f43075380110a823f9f"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-478f8449dccf4f199ffe06eb01199d32/contracts/interview_facts.schema.json",
+      "sha256": "34358b1f9cca39f17f3d7b74abda732460be0beaba2f93b8e8f8bcaa3d2e0a80"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-478f8449dccf4f199ffe06eb01199d32/contracts/run_evidence.schema.json",
+      "sha256": "4fed42abba5d6f9a727c52d6e3097e965ffa3b02ef855aadb2387ab1f890ebce"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-478f8449dccf4f199ffe06eb01199d32/settings.json",
+      "sha256": "d8b9840db857c889b17395a25569b07d4074e2d61120c611deee71fb976c68dc"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "artifacts/w02/runs/RUN-478f8449dccf4f199ffe06eb01199d32/snapshot/artifacts/w02/workflows/WF-eec0791616d24e89913d3c66d2644192/sources/0.json",
+      "sha256": "e32b9176482467e59bce344f0d6aca8366aa64ed30ed1b81fb37dbfab0aaab5d"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-478f8449dccf4f199ffe06eb01199d32/snapshot/artifacts/w02/workflows/WF-eec0791616d24e89913d3c66d2644192/sources/1.json",
+      "sha256": "3b7277d0dd80bfad39beb7849417c864e0e819ee22367fd0ceb0d8fc7a007e45"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-478f8449dccf4f199ffe06eb01199d32/snapshot/artifacts/w02/workflows/WF-eec0791616d24e89913d3c66d2644192/sources/2.json",
+      "sha256": "1081b0c7c4e9004ad95374b3b11f6235f8af8ce94ae149f490b6a20fc5343956"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-478f8449dccf4f199ffe06eb01199d32/snapshot/artifacts/w02/workflows/WF-eec0791616d24e89913d3c66d2644192/sources/3.json",
+      "sha256": "993be8707c253f277289a4011117ecb66e64bac63dad7c8cc60d7af8212cca43"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-478f8449dccf4f199ffe06eb01199d32/snapshot/artifacts/w02/workflows/WF-eec0791616d24e89913d3c66d2644192/sources/4.json",
+      "sha256": "02ad528172ab0fbba0d960cddb3c14646c1f351fd780379ca0fd0328ff93ffab"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-478f8449dccf4f199ffe06eb01199d32/snapshot/artifacts/w02/workflows/WF-eec0791616d24e89913d3c66d2644192/sources/5.json",
+      "sha256": "76ff207e8362bfa12a83331f9ecb8272190d04fb7679a108e7dbe99ac885ce5d"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-478f8449dccf4f199ffe06eb01199d32/snapshot/artifacts/w02/workflows/WF-eec0791616d24e89913d3c66d2644192/sources/6.json",
+      "sha256": "d3aabc396686ad6225fb23aa6ba8e84eb826dbe0ff11f88ffd44e82c97d45282"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "artifacts/w02/runs/RUN-478f8449dccf4f199ffe06eb01199d32/step-001.request.json",
+      "sha256": "ef88bf63c100f68ae361edf786f21f18bc87b63f1da4d16d75c712986982e182"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-478f8449dccf4f199ffe06eb01199d32/step-001.attempts.json",
+      "sha256": "9186f1e629c1f344789c3cbdf9552e9f356f2ab0ded913718acc762e4cf5b953"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-478f8449dccf4f199ffe06eb01199d32/step-001.response.json",
+      "sha256": "1403f3d8dc64edd34aa765bf66efa86d7aa0291d642806d184de94e975445937"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-478f8449dccf4f199ffe06eb01199d32/steps.json",
+      "sha256": "333aac4fc070ec6d4fa31cac6731ec6f58650b98856b832ac37c69611632e1e8"
+    }
+  ],
+  "error": {
+    "code": "QUOTE_NOT_FOUND",
+    "message": "检查位置：CLM-001-0013。本次失败；保留已有请求与公开响应，核对后创建新运行。"
+  }
+}

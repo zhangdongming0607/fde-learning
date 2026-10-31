@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:fde:w02:transcript:0.1.0-draft",
+  "$comment": "Development contract. Structural validity is not proof of a live run or homework acceptance.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "contract_version": {
+      "const": "w02-0.1.0-draft"
+    },
+    "scope_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+    },
+    "origin": {
+      "enum": [
+        "live",
+        "fixture",
+        "replay"
+      ]
+    },
+    "meeting_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+    },
+    "week": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 12
+    },
+    "role_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+    },
+    "scenario_version": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "state": {
+      "enum": [
+        "active",
+        "busy",
+        "ended",
+        "failed"
+      ]
+    },
+    "purpose": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000
+    },
+    "messages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "speaker": {
+            "enum": [
+              "user",
+              "assistant"
+            ]
+          },
+          "content": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50000
+          }
+        },
+        "required": [
+          "id",
+          "speaker",
+          "content"
+        ]
+      },
+      "minItems": 1,
+      "maxItems": 1000
+    }
+  },
+  "required": [
+    "contract_version",
+    "scope_id",
+    "origin",
+    "meeting_id",
+    "week",
+    "role_id",
+    "scenario_version",
+    "state",
+    "purpose",
+    "messages"
+  ]
+}

@@ -10,6 +10,7 @@
 | 目录 | 用途 |
 | --- | --- |
 | `project/` | 官方标准 Agent 工程，以及后续客户化实现和各周作业产出；工程命令在此目录执行 |
+| `engines/` | 各周课程工程包的解压目录（如 `engines/w02/`），仅本地，不纳入 Git；改动以补丁形式放在 `project/customer/wXX/engine_changes/` |
 | `weeks/` | 每周入口索引 |
 | `notes/作业流程.md` | 每周作业流程 |
 | `materials/` | 课程方任务材料、课件、视频字幕，仅本地，不纳入 Git |
@@ -20,13 +21,18 @@
 
 ## 当前状态
 
-2026-10-24：W01 本地产出已完成并通过公开预检（`check_product --root .` 为 pass）。模型为硅基流动 `deepseek-ai/DeepSeek-V4.1-Flash`；`verify_product --live` 11 项、Promptfoo 7 项通过；完成两次沈总访谈，fit-gap 7 条（GAP-001 至 GAP-007），立项报告结论为带条件继续。尚未提交到班期入口，内容待助教判读。每周做法见 [作业流程](notes/作业流程.md)。
+2026-10-24：W01 本地产出已完成并通过公开预检（`check_product --root .` 为 pass）。模型为硅基流动 `deepseek-ai/DeepSeek-V4.1-Flash`；`verify_product --live` 11 项、Promptfoo 7 项通过；完成两次沈总访谈，fit-gap 7 条（GAP-001 至 GAP-007），立项报告结论为带条件继续。尚未提交到班期入口，内容待助教判读。
+
+2026-10-31：W02 本地产出已完成。5 次访谈（必访老周、小林、陈姐，选访王经理，回访沈总），正式提取 118 条候选，人工核查 23 条，形成业务模型说明和访谈与核查记录；Agent 同题对照 4 组；fit-gap 7 条沿用编号修订。公开预检 `check_w02.py` 为 `ready_for_review`（结构齐全，人工审阅待助教）。本周对课程工程做了必要代码改动，补丁在 `project/customer/w02/engine_changes/`。
+
+每周做法见 [作业流程](notes/作业流程.md)。
 
 ## 每周入口
 
 每周一个索引页，列出当周的材料、笔记、证据、访谈和报告；文件仍在原位置，工程结构不变。
 
 - [W01 进场与立项判断](weeks/w01.md)
+- [W02 业务模型与 Agent 使用](weeks/w02.md)
 
 第一周接手标准产品，建立自己的模型运行基线，并形成初步 fit-gap 与立项判断。后续沿用同一份工程，按各周任务增加客户能力。
 

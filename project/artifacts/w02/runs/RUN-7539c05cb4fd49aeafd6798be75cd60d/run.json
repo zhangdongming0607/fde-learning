@@ -1,0 +1,101 @@
+{
+  "contract_version": "w02-0.1.0-draft",
+  "run_id": "RUN-7539c05cb4fd49aeafd6798be75cd60d",
+  "stage": "extraction",
+  "mode": "live",
+  "status": "succeeded",
+  "model": {
+    "provider": "api.siliconflow.cn",
+    "name": "deepseek-ai/DeepSeek-V4.1-Flash",
+    "adapter_version": "w02-extractor-0.1.0"
+  },
+  "implementation": [
+    {
+      "path": "artifacts/w02/runs/RUN-7539c05cb4fd49aeafd6798be75cd60d/implementation/platform/fde_product/interview_extraction.py",
+      "sha256": "f8554257462ffacab499d22c1cb35c6b6294826cbfa621a5f5c485c9ae7dbd61"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-7539c05cb4fd49aeafd6798be75cd60d/implementation/platform/fde_product/models.py",
+      "sha256": "64f063c8191ddc584eb936db1eecbed8942860e563e825ff56eba3c04e5dd2a8"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-7539c05cb4fd49aeafd6798be75cd60d/implementation/tools/w02_interviews.py",
+      "sha256": "23addaf44784f2bd0dad4702dc68104a7bc357d2f94922ebf2e0b198a56b2f5c"
+    }
+  ],
+  "configuration": [
+    {
+      "path": "artifacts/w02/runs/RUN-7539c05cb4fd49aeafd6798be75cd60d/snapshot/customer/w02/eval/plan2_stream_v2_onebatch.json",
+      "sha256": "29bca6b07eca99198621502bcb29adf14e89eadcc21f21b3305232972b8347fe"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-7539c05cb4fd49aeafd6798be75cd60d/snapshot/customer/w02/eval/prompt_v2.txt",
+      "sha256": "f7481fdeabdce66839b933a45d29150ac40fbb01f2d8b60eb33d7cc097526a2a"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-7539c05cb4fd49aeafd6798be75cd60d/contracts/transcript.schema.json",
+      "sha256": "855f84b576d3f0b7bea82eac6b817fc0c8c723040f131f43075380110a823f9f"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-7539c05cb4fd49aeafd6798be75cd60d/contracts/interview_facts.schema.json",
+      "sha256": "34358b1f9cca39f17f3d7b74abda732460be0beaba2f93b8e8f8bcaa3d2e0a80"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-7539c05cb4fd49aeafd6798be75cd60d/contracts/run_evidence.schema.json",
+      "sha256": "4fed42abba5d6f9a727c52d6e3097e965ffa3b02ef855aadb2387ab1f890ebce"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-7539c05cb4fd49aeafd6798be75cd60d/settings.json",
+      "sha256": "8ed3a98dbb6a345757e21ead0995811745ed091d6686ac8bd69301dd1be92be6"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "artifacts/w02/runs/RUN-7539c05cb4fd49aeafd6798be75cd60d/snapshot/artifacts/w02/sources/W2-interview-6c1d37b4-9a0c-5106-8e00-9852640f4ea4-transcript.json",
+      "sha256": "993be8707c253f277289a4011117ecb66e64bac63dad7c8cc60d7af8212cca43"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-7539c05cb4fd49aeafd6798be75cd60d/snapshot/artifacts/w02/sources/W2-interview-c4a59a18-4bff-535c-a011-dd0dd0d508fd-transcript.json",
+      "sha256": "02ad528172ab0fbba0d960cddb3c14646c1f351fd780379ca0fd0328ff93ffab"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-7539c05cb4fd49aeafd6798be75cd60d/snapshot/artifacts/w02/sources/W2-interview-f97c78e0-6636-5021-9f78-4daba5b3931c-transcript.json",
+      "sha256": "76ff207e8362bfa12a83331f9ecb8272190d04fb7679a108e7dbe99ac885ce5d"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "artifacts/w02/runs/RUN-7539c05cb4fd49aeafd6798be75cd60d/step-001.request.json",
+      "sha256": "a816b2aac4dacbbd29989dc18f82da0cade7cc47242e953d5d59f3a9744f84db"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-7539c05cb4fd49aeafd6798be75cd60d/step-001.attempts.json",
+      "sha256": "9fab60ad97f40e2a8d715c72f4912bf9e2df14ceb4535b16192e2f3c74cd573d"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-7539c05cb4fd49aeafd6798be75cd60d/step-001.response.json",
+      "sha256": "c0873b4f3bbab0dbd11dba6936deeff5ecce159438df1bc530115ad5c7bd5d7d"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-7539c05cb4fd49aeafd6798be75cd60d/step-002.request.json",
+      "sha256": "a8c25f584bca7ad269b82032efb460704f22a35655d9dccf6ba99f44be1c7cff"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-7539c05cb4fd49aeafd6798be75cd60d/step-002.attempts.json",
+      "sha256": "abd9dd4be1d0073b6abf4c965706d3d41f7588da8ac197ba96c399e44bbd6298"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-7539c05cb4fd49aeafd6798be75cd60d/step-002.response.json",
+      "sha256": "db877847877021a419cb8fc690b3a6ff437bb336cb5d20f6bab937ae4eaeb987"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-7539c05cb4fd49aeafd6798be75cd60d/candidates.json",
+      "sha256": "2863da84151be129fbb53b49cfa0d0a69a0ffd1c0f5371afcc718f767df998dc"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-7539c05cb4fd49aeafd6798be75cd60d/steps.json",
+      "sha256": "e777198d9577fa0c893f7cc2efe4c0901827e0979bef3d2c07b4ef30054cc4ba"
+    }
+  ],
+  "error": null
+}

@@ -1,0 +1,217 @@
+{
+  "summary": {
+    "claims": 62,
+    "gold_items": 20,
+    "pass": 11,
+    "fail": 4,
+    "missed": 5,
+    "quoting_interviewer": 5,
+    "inference_claims": 6,
+    "conflict_groups": 0
+  },
+  "items": [
+    {
+      "id": "G01",
+      "result": "pass",
+      "claim": "C-ZHOU-005",
+      "problems": [],
+      "matched": 1
+    },
+    {
+      "id": "G02",
+      "result": "fail",
+      "claim": "C-CONTEXT-005",
+      "problems": [
+        "kind=inference，应为 fact/question"
+      ],
+      "matched": 1
+    },
+    {
+      "id": "G03",
+      "result": "pass",
+      "claim": "C-ZHOU-002",
+      "problems": [],
+      "matched": 2
+    },
+    {
+      "id": "G04",
+      "result": "pass",
+      "claim": "C-ZHOU-004",
+      "problems": [],
+      "matched": 1
+    },
+    {
+      "id": "G05",
+      "result": "pass",
+      "claim": "C-ZHOU-015",
+      "problems": [],
+      "matched": 1
+    },
+    {
+      "id": "G06",
+      "result": "pass",
+      "claim": "C-ZHOU-014",
+      "problems": [],
+      "matched": 1
+    },
+    {
+      "id": "G07",
+      "result": "pass",
+      "claim": "C-ZHOU-012",
+      "problems": [],
+      "matched": 3
+    },
+    {
+      "id": "G08",
+      "result": "fail",
+      "claim": "zhou-platform-relation-022",
+      "problems": [
+        "evidence_status=reported，应为 unknown"
+      ],
+      "matched": 1
+    },
+    {
+      "id": "G09",
+      "result": "pass",
+      "claim": "C-WANG-004",
+      "problems": [],
+      "matched": 3
+    },
+    {
+      "id": "G10",
+      "result": "missed",
+      "claim": null,
+      "problems": [
+        "未提取到"
+      ]
+    },
+    {
+      "id": "G11",
+      "result": "missed",
+      "claim": null,
+      "problems": [
+        "未提取到"
+      ]
+    },
+    {
+      "id": "G12",
+      "result": "missed",
+      "claim": null,
+      "problems": [
+        "未提取到"
+      ]
+    },
+    {
+      "id": "G13",
+      "result": "missed",
+      "claim": null,
+      "problems": [
+        "未提取到"
+      ]
+    },
+    {
+      "id": "G14",
+      "result": "missed",
+      "claim": null,
+      "problems": [
+        "未提取到"
+      ]
+    },
+    {
+      "id": "G15",
+      "result": "pass",
+      "claim": "chen-repurchase-decline-009",
+      "problems": [],
+      "matched": 1
+    },
+    {
+      "id": "G16",
+      "result": "pass",
+      "claim": "chen-aging-opinion-011",
+      "problems": [],
+      "matched": 1
+    },
+    {
+      "id": "G17",
+      "result": "fail",
+      "claim": "chen-clarify-opinion-007",
+      "problems": [
+        "kind=opinion，应为 fact",
+        "缺少限定（任一）：常见/不代表/不是说已经/非具体"
+      ],
+      "matched": 1
+    },
+    {
+      "id": "G18",
+      "result": "fail",
+      "claim": "chen-old-platform-unknown-008",
+      "problems": [
+        "evidence_status=reported，应为 unknown"
+      ],
+      "matched": 1
+    },
+    {
+      "id": "G19",
+      "result": "pass",
+      "claim": "chen-guide-metric-013",
+      "problems": [],
+      "matched": 2
+    },
+    {
+      "id": "G20",
+      "result": "pass",
+      "claim": "chen-role-scope-017",
+      "problems": [],
+      "matched": 3
+    }
+  ],
+  "quoting_interviewer": [
+    {
+      "claim": "C-CONTEXT-001",
+      "message_id": "MSG-02621"
+    },
+    {
+      "claim": "C-CONTEXT-002",
+      "message_id": "MSG-02621"
+    },
+    {
+      "claim": "C-CONTEXT-003",
+      "message_id": "MSG-02621"
+    },
+    {
+      "claim": "C-CONTEXT-004",
+      "message_id": "MSG-02621"
+    },
+    {
+      "claim": "C-CONTEXT-008",
+      "message_id": "MSG-02636"
+    }
+  ],
+  "inferences": [
+    {
+      "claim": "C-ZHOU-019",
+      "statement": "老周在本次访谈中未说明旧智能营销平台当时如何使用、用起来遇到什么问题、现在是否还有人在用；其仅表示会员运营系统与该平台的关系本次先不展开。"
+    },
+    {
+      "claim": "C-WANG-011",
+      "statement": "王经理在本次访谈中未说明上一个智能营销项目没用起来的原因；对旧项目仅表示不掌握财务当时如何看待投入和结果的具体细节。"
+    },
+    {
+      "claim": "C-CONTEXT-005",
+      "statement": "本次访谈未说明重点会员按什么标准挑选，也未说明该标准与复购率、活跃会员口径及会员类别之间是什么关系。"
+    },
+    {
+      "claim": "C-CONTEXT-006",
+      "statement": "本次访谈未说明重点会员名单的执行方案由谁确认。"
+    },
+    {
+      "claim": "C-CONTEXT-007",
+      "statement": "王经理在本次访谈记录中未就复购率连续四个季度下滑的计算口径或出处作出说明。"
+    },
+    {
+      "claim": "C-CONTEXT-009",
+      "statement": "本次访谈未直接出现关于“门店执行活动前”需讲清事项的陈述；老周谈的是技术接入前置条件，王经理谈的是小范围验证的预算与合同核查条件。"
+    }
+  ],
+  "conflicts": []
+}

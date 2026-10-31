@@ -1,0 +1,24 @@
+{
+  "version": "w02-extractor-0.1.0",
+  "scope_id": "qinghe",
+  "sources": [
+    "artifacts/w02/sources/W2-interview-6c1d37b4-9a0c-5106-8e00-9852640f4ea4-transcript.json",
+    "artifacts/w02/sources/W2-interview-c4a59a18-4bff-535c-a011-dd0dd0d508fd-transcript.json",
+    "artifacts/w02/sources/W2-interview-f97c78e0-6636-5021-9f78-4daba5b3931c-transcript.json"
+  ],
+  "prompt": "customer/w02/eval/prompt_default.txt",
+  "focus_questions": [
+    "各角色对复购率连续下滑分别怎样说？是否给出了计算口径或出处？",
+    "访谈中提到了哪些会员数或其他数字？各自统计的是什么范围，是不是同一口径？",
+    "计算复购率或活跃会员时，会员、订单、券是否需要区分类别或环节？各角色分别怎样说？",
+    "旧智能营销平台当时是怎么使用的？用起来遇到了什么问题？现在是否还有人在用？",
+    "关于旧平台没用起来的原因，各角色分别怎样说，依据是什么？哪些情况角色表示不掌握，又指向了谁？",
+    "重点会员名单由谁提出、谁确认人群和执行方案？各角色对自己能定什么、不能定什么分别怎样说？",
+    "重点会员按什么标准挑选，和复购率、活跃会员的口径以及会员类别是什么关系？哪些还没有说明？",
+    "门店执行活动之前要先讲清哪些事项？什么情况下角色会要求澄清、调整或暂缓？"
+  ],
+  "batch_chars": 1500,
+  "max_batches": 24,
+  "reconcile_chars": 96000,
+  "profile": "compatible"
+}

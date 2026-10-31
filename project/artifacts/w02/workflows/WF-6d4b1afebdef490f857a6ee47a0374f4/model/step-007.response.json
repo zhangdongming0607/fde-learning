@@ -1,0 +1,22 @@
+{
+  "message": {
+    "role": "assistant",
+    "content": "第二组反馈已知悉（两条保留、两位角色转述不算独立佐证）。现在查看旧智能营销平台一组的原文。",
+    "tool_calls": [
+      {
+        "index": 0,
+        "id": "01a192f2e4e5ac1ca58bfcca6bf1a121",
+        "type": "function",
+        "function": {
+          "name": "show_evidence",
+          "arguments": "{\"claim_ids\": [\"CLM-001-0008\", \"CLM-001-0042\", \"CLM-001-0044\", \"CLM-001-0070\"]}"
+        }
+      }
+    ]
+  },
+  "usage": {
+    "prompt_tokens": 52963,
+    "completion_tokens": 199,
+    "total_tokens": 53162
+  }
+}

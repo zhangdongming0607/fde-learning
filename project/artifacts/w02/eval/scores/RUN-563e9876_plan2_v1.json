@@ -1,0 +1,172 @@
+{
+  "summary": {
+    "claims": 72,
+    "gold_items": 20,
+    "pass": 13,
+    "fail": 7,
+    "missed": 0,
+    "quoting_interviewer": 0,
+    "inference_claims": 0,
+    "conflict_groups": 0
+  },
+  "items": [
+    {
+      "id": "G01",
+      "result": "pass",
+      "claim": "ZHOU-006",
+      "problems": [],
+      "matched": 1
+    },
+    {
+      "id": "G02",
+      "result": "pass",
+      "claim": "ZHOU-008",
+      "problems": [],
+      "matched": 1
+    },
+    {
+      "id": "G03",
+      "result": "pass",
+      "claim": "ZHOU-001",
+      "problems": [],
+      "matched": 1
+    },
+    {
+      "id": "G04",
+      "result": "pass",
+      "claim": "ZHOU-003",
+      "problems": [],
+      "matched": 1
+    },
+    {
+      "id": "G05",
+      "result": "fail",
+      "claim": "ZHOU-010",
+      "problems": [
+        "缺少限定（任一）：公司规定/核实"
+      ],
+      "matched": 2
+    },
+    {
+      "id": "G06",
+      "result": "fail",
+      "claim": "ZHOU-010",
+      "problems": [
+        "kind=opinion，应为 fact"
+      ],
+      "matched": 1
+    },
+    {
+      "id": "G07",
+      "result": "fail",
+      "claim": "ZHOU-009",
+      "problems": [
+        "kind=opinion，应为 fact"
+      ],
+      "matched": 2
+    },
+    {
+      "id": "G08",
+      "result": "pass",
+      "claim": "ZHOU-01",
+      "problems": [],
+      "matched": 1
+    },
+    {
+      "id": "G09",
+      "result": "fail",
+      "claim": "WANG-003",
+      "problems": [
+        "kind=opinion，应为 fact"
+      ],
+      "matched": 2
+    },
+    {
+      "id": "G10",
+      "result": "pass",
+      "claim": "C006",
+      "problems": [],
+      "matched": 1
+    },
+    {
+      "id": "G11",
+      "result": "fail",
+      "claim": "C002",
+      "problems": [
+        "kind=opinion，应为 fact/question"
+      ],
+      "matched": 3
+    },
+    {
+      "id": "G12",
+      "result": "pass",
+      "claim": "C010",
+      "problems": [],
+      "matched": 2
+    },
+    {
+      "id": "G13",
+      "result": "fail",
+      "claim": "C009",
+      "problems": [
+        "kind=unknown，应为 fact/question"
+      ],
+      "matched": 2
+    },
+    {
+      "id": "G14",
+      "result": "pass",
+      "claim": "C008",
+      "problems": [],
+      "matched": 2
+    },
+    {
+      "id": "G15",
+      "result": "pass",
+      "claim": "CHEN-16",
+      "problems": [],
+      "matched": 2
+    },
+    {
+      "id": "G16",
+      "result": "pass",
+      "claim": "CHEN-19",
+      "problems": [],
+      "matched": 2
+    },
+    {
+      "id": "G17",
+      "result": "fail",
+      "claim": "CHEN-11",
+      "problems": [
+        "kind=opinion，应为 fact",
+        "缺少限定（任一）：常见/不代表/不是说已经/非具体"
+      ],
+      "matched": 2
+    },
+    {
+      "id": "G18",
+      "result": "pass",
+      "claim": "CHEN-13",
+      "problems": [],
+      "matched": 3
+    },
+    {
+      "id": "G19",
+      "result": "pass",
+      "claim": "CHEN-21",
+      "problems": [],
+      "matched": 5
+    },
+    {
+      "id": "G20",
+      "result": "pass",
+      "claim": "CHEN-28",
+      "problems": [],
+      "matched": 5
+    }
+  ],
+  "quoting_interviewer": [],
+  "inferences": [],
+  "conflicts": []
+}

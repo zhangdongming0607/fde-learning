@@ -2,6 +2,8 @@
 materials/
 notes/w*/
 *.zip
+# 各周课程工程包解压目录；对它的改动以补丁形式放在 project/customer/wXX/engine_changes/
+engines/
 
 # 中间文件与运行环境
 work/
